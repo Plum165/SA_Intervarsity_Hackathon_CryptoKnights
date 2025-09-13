@@ -33,20 +33,20 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label7 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.button11 = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.panel5 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.panel4 = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -56,12 +56,13 @@
             // 
             // button1
             // 
+            this.button1.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.button1.Location = new System.Drawing.Point(27, 90);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(206, 33);
             this.button1.TabIndex = 0;
             this.button1.Text = "Home";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseVisualStyleBackColor = false;
             // 
             // button6
             // 
@@ -100,9 +101,18 @@
             this.panel1.TabIndex = 12;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(18, 25);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(116, 20);
+            this.label7.TabIndex = 2;
+            this.label7.Text = "Current budget";
+            // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(888, 24);
+            this.button2.Location = new System.Drawing.Point(875, 24);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(96, 33);
             this.button2.TabIndex = 14;
@@ -138,7 +148,7 @@
             // 
             // button11
             // 
-            this.button11.Location = new System.Drawing.Point(1001, 24);
+            this.button11.Location = new System.Drawing.Point(988, 24);
             this.button11.Name = "button11";
             this.button11.Size = new System.Drawing.Size(96, 33);
             this.button11.TabIndex = 20;
@@ -153,30 +163,6 @@
             this.panel2.Size = new System.Drawing.Size(196, 185);
             this.panel2.TabIndex = 13;
             // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.label4);
-            this.panel3.Location = new System.Drawing.Point(673, 147);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(209, 185);
-            this.panel3.TabIndex = 14;
-            // 
-            // panel4
-            // 
-            this.panel4.Controls.Add(this.label6);
-            this.panel4.Location = new System.Drawing.Point(27, 443);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(697, 189);
-            this.panel4.TabIndex = 13;
-            // 
-            // panel5
-            // 
-            this.panel5.Controls.Add(this.label5);
-            this.panel5.Location = new System.Drawing.Point(752, 353);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(332, 290);
-            this.panel5.TabIndex = 14;
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -185,6 +171,14 @@
             this.label3.Size = new System.Drawing.Size(40, 20);
             this.label3.TabIndex = 0;
             this.label3.Text = "Map";
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.label4);
+            this.panel3.Location = new System.Drawing.Point(673, 147);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(209, 185);
+            this.panel3.TabIndex = 14;
             // 
             // label4
             // 
@@ -195,6 +189,32 @@
             this.label4.TabIndex = 1;
             this.label4.Text = "Rewards";
             // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.label6);
+            this.panel4.Location = new System.Drawing.Point(27, 443);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(697, 189);
+            this.panel4.TabIndex = 13;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(18, 20);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(120, 20);
+            this.label6.TabIndex = 1;
+            this.label6.Text = "Quick Summary";
+            this.label6.Click += new System.EventHandler(this.label6_Click);
+            // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.label5);
+            this.panel5.Location = new System.Drawing.Point(752, 353);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(332, 290);
+            this.panel5.TabIndex = 14;
+            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -203,24 +223,6 @@
             this.label5.Size = new System.Drawing.Size(143, 20);
             this.label5.TabIndex = 0;
             this.label5.Text = "Recommendations";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(18, 20);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(139, 20);
-            this.label6.TabIndex = 1;
-            this.label6.Text = "Detailed Summary";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(18, 25);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(116, 20);
-            this.label7.TabIndex = 2;
-            this.label7.Text = "Current budget";
             // 
             // Form1
             // 

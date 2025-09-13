@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Budget Wise - Login</title>
+  <style>
+    :root {
+      --primary-bg: #0a0a0a;
+      --primary-text: #ffffff;
+      --accent1: #3a86ff;
+      --accent2: #8338ec;
+      --button-bg: linear-gradient(to right, #3a86ff, #8338ec);
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: var(--primary-bg);
+      color: var(--primary-text);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .login-box {
+      background: #111;
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 0 30px var(--accent1), 0 0 30px var(--accent2);
+      max-width: 350px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .login-box h1 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      text-shadow: 0 0 10px var(--accent1), 0 0 10px var(--accent2);
+    }
+
+    .login-box p {
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+      color: #ccc;
+    }
+
+    .input-field {
+      margin-bottom: 1rem;
+    }
+
+    .input-field input {
+      width: 100%;
+      padding: 0.7rem;
+      border: 1px solid var(--accent1);
+      border-radius: 8px;
+      background: transparent;
+      color: var(--primary-text);
+      font-size: 0.9rem;
+    }
+
+    .btn {
+      display: inline-block;
+      width: 100%;
+      padding: 0.8rem;
+      background: var(--button-bg);
+      border: none;
+      border-radius: 8px;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      margin-bottom: 1rem;
+    }
+
+    .btn:hover {
+      opacity: 0.9;
+    }
+
+    .links {
+      font-size: 0.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .theme-selector {
+      margin-top: 1.5rem;
+      text-align: left;
+    }
+
+    .theme-selector label, .theme-selector select, .theme-selector input {
+      display: block;
+      margin-bottom: 0.5rem;
+      width: 100%;
+    }
+
+    .theme-selector button {
+      margin-top: 0.5rem;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-box">
+    <h1>BUDGET WISE</h1>
+    <p>Securely Manage Your Finances</p>
+    <div class="input-field">
+      <input type="text" placeholder="Username">
+    </div>
+    <div class="input-field">
+      <input type="password" placeholder="Password">
+    </div>
+    <button class="btn">LOG IN</button>
+    <div class="links">
+      <a href="#" style="color: var(--accent1)">Forgot Password?</a> | 
+      <a href="#" style="color: var(--accent2)">Create Account</a>
+    </div>
+    <a href="#" class="btn">Connect to Another Page</a>
+
+    <div class="theme-selector">
+      <label for="theme">Choose a Theme:</label>
+      <select id="theme">
+        <option value="spiderman">Spiderman (Default)</option>
+        <option value="blood">Blood</option>
+        <option value="sapphireSteel">Sapphire & Steel</option>
+        <option value="emeraldCharcoal">Emerald & Charcoal</option>
+        <option value="digitalTwilight">Digital Twilight</option>
+        <option value="coralAqua">Coral & Aqua</option>
+        <option value="electricCitrus">Electric Citrus</option>
+        <option value="artisanClay">Artisan Clay</option>
+        <option value="forestCanopy">Forest Canopy</option>
+        <option value="oceanDepth">Ocean Depth</option>
+        <option value="desertSunset">Desert Sunset</option>
+        <option value="monochromeFocus">Monochrome Focus</option>
+        <option value="softNordic">Soft Nordic Neutral</option>
+        <option value="peachRetro">Peach Retro Pop</option>
+        <option value="cyberpunkGlow">Cyberpunk Glow</option>
+        <option value="plumGold">Plum & Gold</option>
+      </select>
+
+      <label for="customColor1">Custom Accent 1:</label>
+      <input type="color" id="customColor1" value="#3a86ff">
+
+      <label for="customColor2">Custom Accent 2:</label>
+      <input type="color" id="customColor2" value="#8338ec">
+
+      <button onclick="applyCustomTheme()" class="btn">Apply Custom Theme</button>
+    </div>
+  </div>
+
+  <script>
+    const themes = {
+      spiderman: {accent1: '#e63946', accent2: '#457b9d', bg: '#1d1d1d'},
+      blood: {accent1: '#8a0303', accent2: '#ff0000', bg: '#1a0000'},
+      sapphireSteel: {accent1: '#0f4c81', accent2: '#5c6b73', bg: '#0a0a0a'},
+      emeraldCharcoal: {accent1: '#2ecc71', accent2: '#2c3e50', bg: '#0a0a0a'},
+      digitalTwilight: {accent1: '#6a0572', accent2: '#ab83a1', bg: '#0a0a0a'},
+      coralAqua: {accent1: '#ff6f61', accent2: '#20b2aa', bg: '#0a0a0a'},
+      electricCitrus: {accent1: '#ff9f1c', accent2: '#ff4040', bg: '#0a0a0a'},
+      artisanClay: {accent1: '#b5651d', accent2: '#ffdab9', bg: '#0a0a0a'},
+      forestCanopy: {accent1: '#228b22', accent2: '#006400', bg: '#0a0a0a'},
+      oceanDepth: {accent1: '#1ca9c9', accent2: '#004e7c', bg: '#0a0a0a'},
+      desertSunset: {accent1: '#ff7f50', accent2: '#ff4500', bg: '#0a0a0a'},
+      monochromeFocus: {accent1: '#ffffff', accent2: '#888888', bg: '#000000'},
+      softNordic: {accent1: '#e0e1dd', accent2: '#778da9', bg: '#0a0a0a'},
+      peachRetro: {accent1: '#fcbf49', accent2: '#e36414', bg: '#0a0a0a'},
+      cyberpunkGlow: {accent1: '#ff00ff', accent2: '#00ffff', bg: '#0a0a0a'},
+      plumGold: {accent1: '#673147', accent2: '#ffd700', bg: '#0a0a0a'},
+    };
+
+    document.getElementById('theme').addEventListener('change', function() {
+      const selectedTheme = this.value;
+      applyTheme(themes[selectedTheme]);
+    });
+
+    function applyTheme(theme) {
+      document.documentElement.style.setProperty('--accent1', theme.accent1);
+      document.documentElement.style.setProperty('--accent2', theme.accent2);
+      document.documentElement.style.setProperty('--primary-bg', theme.bg);
+      document.documentElement.style.setProperty('--button-bg', `linear-gradient(to right, ${theme.accent1}, ${theme.accent2})`);
+    }
+
+    function applyCustomTheme() {
+      const color1 = document.getElementById('customColor1').value;
+      const color2 = document.getElementById('customColor2').value;
+      applyTheme({accent1: color1, accent2: color2, bg: '#0a0a0a'});
+    }
+  </script>
+</body>
+</html>
