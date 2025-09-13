@@ -211,27 +211,19 @@ document.addEventListener('DOMContentLoaded', () => {
   if (pages.length > 0) pages[0].classList.add('active');
 
   // ----------- Portfolio / Stocks Graph -----------
-  const portfolioCtx = document.getElementById('portfolioChart');
-  if (portfolioCtx) {
-    new Chart(portfolioCtx.getContext('2d'), {
-      type: 'doughnut',
-      data: {
-        labels: ['FNB Shares (2000 ZAR)', 'Remaining Cash (3000 ZAR)'],
-        datasets: [{
-          data: [2000, 3000],
-          backgroundColor: ['#6f42c1', '#3b0066'],
-          borderColor: ['#fff', '#fff'],
-          borderWidth: 2
-        }]
-      },
-      options: {
-        responsive: true,
-        plugins: {
-          legend: { position: 'bottom', labels: { color: '#fff', font: { size: 14 } } },
-          tooltip: { callbacks: { label: ctx => ctx.label + ': ZAR ' + ctx.parsed } }
-        }
-      }
-    });
-  }
+const ctx = document.getElementById('portfolioChart');
+  if (!ctx) return;
+
+  new Chart(ctx.getContext('2d'), {
+    type: 'doughnut',
+    data: {
+      labels: ['FNB Shares (2000 ZAR)', 'Remaining Cash (3000 ZAR)'],
+      datasets: [{
+        data: [2000, 3000],
+        backgroundColor: ['#6f42c1', '#3b0066']
+      }]
+    },
+    options: { responsive: true }
+  });
 
 });
