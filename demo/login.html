@@ -1,189 +1,292 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Budget Wise - Login</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!---- Name hasnt been decided ---->
+  <title>Budget Dynamic Flow - Login</title>
   <style>
+    /* -------- Base Variables -------- */
     :root {
-      --primary-bg: #0a0a0a;
-      --primary-text: #ffffff;
-      --accent1: #3a86ff;
-      --accent2: #8338ec;
-      --button-bg: linear-gradient(to right, #3a86ff, #8338ec);
+      --bg-color: #0a0014;
+      --primary-color: #7a00ff;
+      --secondary-color: #00f6ff;
+      --accent-color: #ff00ff;
+      --text-color: #ffffff;
+      --button-gradient: linear-gradient(90deg, #00c6ff, #7a00ff);
     }
 
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: var(--primary-bg);
-      color: var(--primary-text);
+      height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      background: radial-gradient(circle at center, #0d0221, var(--bg-color));
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: var(--text-color);
+      overflow: hidden;
     }
 
-    .login-box {
-      background: #111;
-      padding: 2rem;
-      border-radius: 20px;
-      box-shadow: 0 0 30px var(--accent1), 0 0 30px var(--accent2);
-      max-width: 350px;
-      width: 100%;
+    /* -------- Login Container -------- */
+    .login-container {
+      background: rgba(20, 0, 40, 0.85);
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px var(--primary-color), 0 0 40px var(--secondary-color);
+      border: 2px solid var(--secondary-color);
+      width: 350px;
       text-align: center;
+      position: relative;
     }
 
-    .login-box h1 {
-      font-size: 1.5rem;
-      margin-bottom: 0.5rem;
-      text-shadow: 0 0 10px var(--accent1), 0 0 10px var(--accent2);
+    .login-container h1 {
+      margin: 0;
+      font-size: 28px;
+      letter-spacing: 2px;
+      font-weight: bold;
     }
 
-    .login-box p {
-      font-size: 0.9rem;
-      margin-bottom: 1.5rem;
-      color: #ccc;
+    .login-container p {
+      margin: 5px 0 25px;
+      font-size: 14px;
+      letter-spacing: 3px;
     }
 
-    .input-field {
-      margin-bottom: 1rem;
-    }
-
-    .input-field input {
+    /* -------- Input Fields -------- */
+    .login-container input {
       width: 100%;
-      padding: 0.7rem;
-      border: 1px solid var(--accent1);
-      border-radius: 8px;
-      background: transparent;
-      color: var(--primary-text);
-      font-size: 0.9rem;
-    }
-
-    .btn {
-      display: inline-block;
-      width: 100%;
-      padding: 0.8rem;
-      background: var(--button-bg);
+      padding: 12px;
+      margin: 10px 0;
       border: none;
-      border-radius: 8px;
+      outline: none;
+      border-bottom: 2px solid var(--secondary-color);
+      background: transparent;
+      color: var(--text-color);
+      font-size: 14px;
+    }
+
+    .login-container input::placeholder {
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    /* -------- Button -------- */
+    .login-container button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 20px;
+      border: none;
+      border-radius: 20px;
+      background: var(--button-gradient);
       color: #fff;
       font-weight: bold;
+      font-size: 14px;
       cursor: pointer;
-      margin-bottom: 1rem;
+      transition: transform 0.2s ease;
     }
 
-    .btn:hover {
-      opacity: 0.9;
+    .login-container button:hover {
+      transform: scale(1.05);
     }
 
-    .links {
-      font-size: 0.8rem;
-      margin-bottom: 1rem;
-    }
-
-    .theme-selector {
-      margin-top: 1.5rem;
-      text-align: left;
-    }
-
-    .theme-selector label, .theme-selector select, .theme-selector input {
+    /* -------- Forgot Password(Later will give a demo login) -------- */
+    .login-container a {
       display: block;
-      margin-bottom: 0.5rem;
-      width: 100%;
+      margin-top: 15px;
+      font-size: 12px;
+      color: var(--secondary-color);
+      text-decoration: none;
     }
 
-    .theme-selector button {
-      margin-top: 0.5rem;
-      width: 100%;
+    .login-container a:hover {
+      text-decoration: underline;
+    }
+
+    /* -------- Theme Switcher -------- */
+    .theme-switcher {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+    }
+
+    select {
+      padding: 5px;
+      border-radius: 5px;
+      border: none;
+      background: var(--secondary-color);
+      color: #000;
+      font-weight: bold;
+    }
+
+    /* -------- Theme Definitions(This will be the most used themes) -------- */
+    body.theme-default {
+      --bg-color: #0a0014;
+      --primary-color: #7a00ff;
+      --secondary-color: #00f6ff;
+      --accent-color: #ff00ff;
+      --button-gradient: linear-gradient(90deg, #00c6ff, #7a00ff);
+    }
+
+    body.theme-red-blue {
+      --bg-color: #0b0b1a;
+      --primary-color: #ff0000;
+      --secondary-color: #0066ff;
+      --button-gradient: linear-gradient(90deg, #ff0000, #0066ff);
+    }
+
+    body.theme-spiderman {
+      --bg-color: #000000;
+      --primary-color: #800080;
+      --secondary-color: #111111;
+      --button-gradient: linear-gradient(90deg, #800080, #000000);
+    }
+
+    body.theme-blood {
+      --bg-color: #1a0000;
+      --primary-color: #8b0000;
+      --secondary-color: #ff1a1a;
+      --button-gradient: linear-gradient(90deg, #ff0000, #660000);
+    }
+
+    body.theme-sapphire-steel {
+      --bg-color: #00111f;
+      --primary-color: #1f3b73;
+      --secondary-color: #a8a9ad;
+      --button-gradient: linear-gradient(90deg, #1f3b73, #a8a9ad);
+    }
+
+    body.theme-emerald-charcoal {
+      --bg-color: #0f1f1a;
+      --primary-color: #006644;
+      --secondary-color: #2c2c2c;
+      --button-gradient: linear-gradient(90deg, #00cc66, #2c2c2c);
+    }
+
+    body.theme-digital-twilight {
+      --bg-color: #100020;
+      --primary-color: #301060;
+      --secondary-color: #00aaff;
+      --button-gradient: linear-gradient(90deg, #301060, #00aaff);
+    }
+
+    body.theme-coral-aqua {
+      --bg-color: #002733;
+      --primary-color: #ff6f61;
+      --secondary-color: #00e6e6;
+      --button-gradient: linear-gradient(90deg, #ff6f61, #00e6e6);
+    }
+
+    body.theme-electric-citrus {
+      --bg-color: #1a0f00;
+      --primary-color: #ffcc00;
+      --secondary-color: #ff6600;
+      --button-gradient: linear-gradient(90deg, #ffcc00, #ff6600);
+    }
+
+    body.theme-artisan-clay {
+      --bg-color: #2b1a12;
+      --primary-color: #a0522d;
+      --secondary-color: #d2691e;
+      --button-gradient: linear-gradient(90deg, #a0522d, #d2691e);
+    }
+
+    body.theme-forest-canopy {
+      --bg-color: #0b1a0f;
+      --primary-color: #004d00;
+      --secondary-color: #8b4513;
+      --button-gradient: linear-gradient(90deg, #004d00, #8b4513);
+    }
+
+    body.theme-ocean-depth {
+      --bg-color: #001f33;
+      --primary-color: #003366;
+      --secondary-color: #00cccc;
+      --button-gradient: linear-gradient(90deg, #003366, #00cccc);
+    }
+
+    body.theme-desert-sunset {
+      --bg-color: #331a00;
+      --primary-color: #ff6600;
+      --secondary-color: #ffcc66;
+      --button-gradient: linear-gradient(90deg, #ff6600, #ffcc66);
+    }
+
+    body.theme-monochrome-focus {
+      --bg-color: #111111;
+      --primary-color: #444444;
+      --secondary-color: #ffffff;
+      --button-gradient: linear-gradient(90deg, #444444, #ffffff);
+    }
+
+    body.theme-soft-nordic {
+      --bg-color: #f2f2f2;
+      --primary-color: #cccccc;
+      --secondary-color: #a3a3a3;
+      --text-color: #000;
+      --button-gradient: linear-gradient(90deg, #cccccc, #a3a3a3);
+    }
+
+    body.theme-peach-retro {
+      --bg-color: #2a0d0d;
+      --primary-color: #ff9999;
+      --secondary-color: #ff6666;
+      --button-gradient: linear-gradient(90deg, #ff9999, #ff6666);
+    }
+
+    body.theme-cyberpunk {
+      --bg-color: #050011;
+      --primary-color: #ff00ff;
+      --secondary-color: #00ffff;
+      --button-gradient: linear-gradient(90deg, #ff00ff, #00ffff);
+    }
+
+    body.theme-plum-gold {
+      --bg-color: #200020;
+      --primary-color: #800080;
+      --secondary-color: #ffd700;
+      --button-gradient: linear-gradient(90deg, #800080, #ffd700);
     }
   </style>
 </head>
-<body>
-  <div class="login-box">
-    <h1>BUDGET WISE</h1>
-    <p>Securely Manage Your Finances</p>
-    <div class="input-field">
-      <input type="text" placeholder="Username">
-    </div>
-    <div class="input-field">
-      <input type="password" placeholder="Password">
-    </div>
-    <button class="btn">LOG IN</button>
-    <div class="links">
-      <a href="#" style="color: var(--accent1)">Forgot Password?</a> | 
-      <a href="#" style="color: var(--accent2)">Create Account</a>
-    </div>
-    <a href="#" class="btn">Connect to Another Page</a>
-
-    <div class="theme-selector">
-      <label for="theme">Choose a Theme:</label>
-      <select id="theme">
-        <option value="spiderman">Spiderman (Default)</option>
-        <option value="blood">Blood</option>
-        <option value="sapphireSteel">Sapphire & Steel</option>
-        <option value="emeraldCharcoal">Emerald & Charcoal</option>
-        <option value="digitalTwilight">Digital Twilight</option>
-        <option value="coralAqua">Coral & Aqua</option>
-        <option value="electricCitrus">Electric Citrus</option>
-        <option value="artisanClay">Artisan Clay</option>
-        <option value="forestCanopy">Forest Canopy</option>
-        <option value="oceanDepth">Ocean Depth</option>
-        <option value="desertSunset">Desert Sunset</option>
-        <option value="monochromeFocus">Monochrome Focus</option>
-        <option value="softNordic">Soft Nordic Neutral</option>
-        <option value="peachRetro">Peach Retro Pop</option>
-        <option value="cyberpunkGlow">Cyberpunk Glow</option>
-        <option value="plumGold">Plum & Gold</option>
+<body class="theme-default">
+  <div class="login-container">
+    <div class="theme-switcher">
+      <select id="theme-select">
+        <option value="theme-default">Default</option>
+        <option value="theme-red-blue">Red - Blue</option>
+        <option value="theme-spiderman">Purple - Black (Spiderman)</option>
+        <option value="theme-blood">Blood</option>
+        <option value="theme-sapphire-steel">Sapphire & Steel</option>
+        <option value="theme-emerald-charcoal">Emerald & Charcoal</option>
+        <option value="theme-digital-twilight">Digital Twilight</option>
+        <option value="theme-coral-aqua">Coral & Aqua</option>
+        <option value="theme-electric-citrus">Electric Citrus</option>
+        <option value="theme-artisan-clay">Artisan Clay</option>
+        <option value="theme-forest-canopy">Forest Canopy</option>
+        <option value="theme-ocean-depth">Ocean Depth</option>
+        <option value="theme-desert-sunset">Desert Sunset</option>
+        <option value="theme-monochrome-focus">Monochrome Focus</option>
+        <option value="theme-soft-nordic">Soft Nordic Neutral</option>
+        <option value="theme-peach-retro">Peach Retro Pop</option>
+        <option value="theme-cyberpunk">Cyberpunk Glow</option>
+        <option value="theme-plum-gold">Plum & Gold</option>
       </select>
-
-      <label for="customColor1">Custom Accent 1:</label>
-      <input type="color" id="customColor1" value="#3a86ff">
-
-      <label for="customColor2">Custom Accent 2:</label>
-      <input type="color" id="customColor2" value="#8338ec">
-
-      <button onclick="applyCustomTheme()" class="btn">Apply Custom Theme</button>
     </div>
+    <h1>BUDGET</h1>
+    <p>DYNAMIC FLOW</p>
+    <form>
+      <input type="text" placeholder="USERNAME">
+      <input type="password" placeholder="PASSWORD">
+      <button type="button">SIGN IN</button>
+      <a href="#">Forgot Password?</a>
+    </form>
   </div>
 
   <script>
-    const themes = {
-      spiderman: {accent1: '#e63946', accent2: '#457b9d', bg: '#1d1d1d'},
-      blood: {accent1: '#8a0303', accent2: '#ff0000', bg: '#1a0000'},
-      sapphireSteel: {accent1: '#0f4c81', accent2: '#5c6b73', bg: '#0a0a0a'},
-      emeraldCharcoal: {accent1: '#2ecc71', accent2: '#2c3e50', bg: '#0a0a0a'},
-      digitalTwilight: {accent1: '#6a0572', accent2: '#ab83a1', bg: '#0a0a0a'},
-      coralAqua: {accent1: '#ff6f61', accent2: '#20b2aa', bg: '#0a0a0a'},
-      electricCitrus: {accent1: '#ff9f1c', accent2: '#ff4040', bg: '#0a0a0a'},
-      artisanClay: {accent1: '#b5651d', accent2: '#ffdab9', bg: '#0a0a0a'},
-      forestCanopy: {accent1: '#228b22', accent2: '#006400', bg: '#0a0a0a'},
-      oceanDepth: {accent1: '#1ca9c9', accent2: '#004e7c', bg: '#0a0a0a'},
-      desertSunset: {accent1: '#ff7f50', accent2: '#ff4500', bg: '#0a0a0a'},
-      monochromeFocus: {accent1: '#ffffff', accent2: '#888888', bg: '#000000'},
-      softNordic: {accent1: '#e0e1dd', accent2: '#778da9', bg: '#0a0a0a'},
-      peachRetro: {accent1: '#fcbf49', accent2: '#e36414', bg: '#0a0a0a'},
-      cyberpunkGlow: {accent1: '#ff00ff', accent2: '#00ffff', bg: '#0a0a0a'},
-      plumGold: {accent1: '#673147', accent2: '#ffd700', bg: '#0a0a0a'},
-    };
-
-    document.getElementById('theme').addEventListener('change', function() {
-      const selectedTheme = this.value;
-      applyTheme(themes[selectedTheme]);
+    const themeSelect = document.getElementById('theme-select');
+    themeSelect.addEventListener('change', (e) => {
+      document.body.className = e.target.value;
     });
-
-    function applyTheme(theme) {
-      document.documentElement.style.setProperty('--accent1', theme.accent1);
-      document.documentElement.style.setProperty('--accent2', theme.accent2);
-      document.documentElement.style.setProperty('--primary-bg', theme.bg);
-      document.documentElement.style.setProperty('--button-bg', `linear-gradient(to right, ${theme.accent1}, ${theme.accent2})`);
-    }
-
-    function applyCustomTheme() {
-      const color1 = document.getElementById('customColor1').value;
-      const color2 = document.getElementById('customColor2').value;
-      applyTheme({accent1: color1, accent2: color2, bg: '#0a0a0a'});
-    }
   </script>
 </body>
 </html>
