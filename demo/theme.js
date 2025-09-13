@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 
   // ----------- Load User Data -----------
-  let userPoints = parseInt(localStorage.getItem("userPoints")) || 50; // start points
+  let userPoints = parseInt(localStorage.getItem("userPoints")) || 50; 
   let ownedThemes = JSON.parse(localStorage.getItem("ownedThemes")) || ["theme-default"];
   let ownedCoupons = JSON.parse(localStorage.getItem("ownedCoupons")) || [];
 
@@ -15,12 +15,36 @@ document.addEventListener('DOMContentLoaded', () => {
   const customText = document.getElementById('custom-text');
   const applyCustomBtn = document.getElementById('apply-custom-theme');
   const addPointsBtn = document.getElementById("addPointsBtn");
+  const ownedThemesList = document.getElementById("ownedThemesList");
+  const ownedCouponsList = document.getElementById("ownedCouponsList");
 
   // ----------- Update Points Display -----------
   const updatePointsDisplay = () => {
     if (pointsDisplay) pointsDisplay.textContent = userPoints;
   };
   updatePointsDisplay();
+
+  // ----------- Update Rewards Display -----------
+  const updateRewardsDisplay = () => {
+    if (ownedThemesList) {
+      ownedThemesList.innerHTML = "";
+      ownedThemes.forEach(theme => {
+        const li = document.createElement("li");
+        li.textContent = theme.replace("theme-", "").replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase());
+        ownedThemesList.appendChild(li);
+      });
+    }
+
+    if (ownedCouponsList) {
+      ownedCouponsList.innerHTML = "";
+      ownedCoupons.forEach(coupon => {
+        const li = document.createElement("li");
+        li.textContent = coupon.replace(/([a-zA-Z]+)(\d+)/, "$1 - $2% Off");
+        ownedCouponsList.appendChild(li);
+      });
+    }
+  };
+  updateRewardsDisplay();
 
   // ----------- Add Points Button -----------
   if (addPointsBtn) {
@@ -53,32 +77,32 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   // ----------- Populate Theme Dropdown -----------
-  if (themeSelect) {
-    themeSelect.innerHTML = '';
-    ownedThemes.forEach(theme => {
-      const opt = document.createElement("option");
-      opt.value = theme;
-      opt.textContent = theme
-        .replace("theme-", "")
-        .replace(/-/g, " ")
-        .replace(/\b\w/g, c => c.toUpperCase());
-      themeSelect.appendChild(opt);
-    });
+  const populateThemeDropdown = () => {
+    if (themeSelect) {
+      themeSelect.innerHTML = '';
+      ownedThemes.forEach(theme => {
+        const opt = document.createElement("option");
+        opt.value = theme;
+        opt.textContent = theme.replace("theme-", "").replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase());
+        themeSelect.appendChild(opt);
+      });
 
-    // Restore saved theme if still owned
-    const savedTheme = localStorage.getItem("selectedTheme");
-    if (savedTheme && ownedThemes.includes(savedTheme)) {
-      themeSelect.value = savedTheme;
-      applyTheme(savedTheme);
-    } else if (ownedThemes.length > 0) {
-      themeSelect.value = ownedThemes[0];
-      applyTheme(ownedThemes[0]);
+      // Restore saved theme if still owned
+      const savedTheme = localStorage.getItem("selectedTheme");
+      if (savedTheme && ownedThemes.includes(savedTheme)) {
+        themeSelect.value = savedTheme;
+        applyTheme(savedTheme);
+      } else if (ownedThemes.length > 0) {
+        themeSelect.value = ownedThemes[0];
+        applyTheme(ownedThemes[0]);
+      }
+
+      themeSelect.addEventListener('change', (e) => {
+        applyTheme(e.target.value);
+      });
     }
-
-    themeSelect.addEventListener('change', (e) => {
-      applyTheme(e.target.value);
-    });
-  }
+  };
+  populateThemeDropdown();
 
   // ----------- Apply Custom Theme -----------
   if (applyCustomBtn) {
@@ -113,6 +137,26 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ----------- Rewards Shop Buy Buttons -----------
+  const updateShopButtons = () => {
+    document.querySelectorAll(".buy-btn").forEach(btn => {
+      const li = btn.closest("li");
+      const theme = li.dataset.theme;
+      const coupon = li.dataset.coupon;
+
+      // Disable already owned items
+      if ((theme && ownedThemes.includes(theme)) || (coupon && ownedCoupons.includes(coupon))) {
+        btn.disabled = true;
+        btn.textContent = "Owned";
+        li.style.opacity = 0.5;
+      } else {
+        btn.disabled = false;
+        btn.textContent = "Buy";
+        li.style.opacity = 1;
+      }
+    });
+  };
+  updateShopButtons();
+
   document.querySelectorAll(".buy-btn").forEach(btn => {
     btn.addEventListener("click", (e) => {
       const li = e.target.closest("li");
@@ -120,35 +164,32 @@ document.addEventListener('DOMContentLoaded', () => {
       const theme = li.dataset.theme;
       const coupon = li.dataset.coupon;
 
-      if (userPoints >= cost) {
-        userPoints -= cost;
-        localStorage.setItem("userPoints", userPoints);
-        updatePointsDisplay();
-
-        if (theme) {
-          if (!ownedThemes.includes(theme)) ownedThemes.push(theme);
-          localStorage.setItem("ownedThemes", JSON.stringify(ownedThemes));
-          alert(`You unlocked ${theme}! It’s now available in your Theme Selector.`);
-          
-          // Update theme dropdown immediately
-          const opt = document.createElement("option");
-          opt.value = theme;
-          opt.textContent = theme
-            .replace("theme-", "")
-            .replace(/-/g, " ")
-            .replace(/\b\w/g, c => c.toUpperCase());
-          themeSelect.appendChild(opt);
-        }
-
-        if (coupon) {
-          if (!ownedCoupons.includes(coupon)) ownedCoupons.push(coupon);
-          localStorage.setItem("ownedCoupons", JSON.stringify(ownedCoupons));
-          alert(`You unlocked a coupon: ${coupon}!`);
-        }
-
-      } else {
+      if (userPoints < cost) {
         alert("Not enough points to buy this!");
+        return;
       }
+
+      // Deduct points
+      userPoints -= cost;
+      localStorage.setItem("userPoints", userPoints);
+      updatePointsDisplay();
+
+      // Add theme or coupon
+      if (theme && !ownedThemes.includes(theme)) {
+        ownedThemes.push(theme);
+        localStorage.setItem("ownedThemes", JSON.stringify(ownedThemes));
+        alert(`You unlocked ${theme.replace("theme-", "").replace(/-/g," ").replace(/\b\w/g,c=>c.toUpperCase())}!`);
+        populateThemeDropdown();
+      }
+
+      if (coupon && !ownedCoupons.includes(coupon)) {
+        ownedCoupons.push(coupon);
+        localStorage.setItem("ownedCoupons", JSON.stringify(ownedCoupons));
+        alert(`You unlocked a coupon: ${coupon}!`);
+      }
+
+      updateRewardsDisplay();
+      updateShopButtons();
     });
   });
 
@@ -167,7 +208,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   });
-
   if (pages.length > 0) pages[0].classList.add('active');
 
   // ----------- Portfolio / Stocks Graph -----------

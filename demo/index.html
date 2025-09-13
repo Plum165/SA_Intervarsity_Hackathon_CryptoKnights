@@ -28,7 +28,7 @@
       <option value="theme-peach-retro">Peach Retro Pop</option>
       <option value="theme-cyberpunk">Cyberpunk Glow</option>
       <option value="theme-plum-gold">Plum & Gold</option>
-    <option value="theme-custom">Custom</option>
+    <!--<option value="theme-custom">Custom</option>-->
   </select>
 
   <!-- Custom Theme Picker (hidden initially) -->
@@ -65,20 +65,38 @@
         <div class="content-box current-budget">
           <h3>Current budget</h3>
           <p class="current-budget-text">
-            Thare ipsum doler is amet lasadore mvit, doire sicredes l'ine sfraguta teing tacent, and saim pomer and it repleed any buget card.
-          </p>
+  You haven't created any budgets yet. Start by adding your first budget to track your income and expenses!
+</p>
+<p>Add Your First Budget by click on <strong>Budget</strong></p>
+<p>Tip: Start with your essential expenses like rent or groceries to get a clear view of your finances.</p>
+
         </div>
         <div class="content-box quick-summary">
           <h3>Quick Summary</h3>
-          <p>Financial overview and recent activities will appear here.</p>
+          <p class="quick-summary-text">
+  Your financial overview will appear here once you start adding budgets and tracking expenses. Stay on top of your finances!
+</p>
+<ul>
+  <li>Start by adding a budget for your essential expenses.</li>
+  <li>Track your weekly or monthly spending to see trends.</li>
+  <li>Earn points for completing budgeting tasks!</li>
+</ul>
+
         </div>
       </section>
 
       <section class="right-column">
         <div class="content-box rewards">
-          <h3>Rewards</h3>
-          <p>Discover your earned rewards and benefits.</p>
-        </div>
+  <h3>Rewards</h3>
+  <p>Discover your earned rewards and benefits.</p>
+
+  <h4>Owned Themes:</h4>
+  <ul id="ownedThemesList"></ul>
+
+  <h4>Owned Coupons:</h4>
+  <ul id="ownedCouponsList"></ul>
+</div>
+
        <div class="map">
   <iframe
     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3325.286660456846!2d18.444829!3d-33.966192!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1dcc5009f3e1b1c5%3A0x1234567890abcdef!2sRosebank%20Mall!5e0!3m2!1sen!2sza!4v1694600000000!5m2!1sen!2sza"
@@ -108,22 +126,70 @@
   <!--<button id="addPointsBtn">+100 Points</button>-->
 
   <!-- Themes Shop -->
+  
   <h4>Buyable Themes</h4>
-  <ul id="themeShop">
-    <li data-theme="theme-blood" data-cost="100">
-      Blood Theme - 100 pts 
-      <button class="buy-btn">Buy</button>
-    </li>
-    <li data-theme="theme-sapphire-steel" data-cost="120">
-      Sapphire & Steel - 120 pts 
-      <button class="buy-btn">Buy</button>
-    </li>
-    <li data-theme="theme-emerald-charcoal" data-cost="110">
-      Emerald & Charcoal - 110 pts 
-      <button class="buy-btn">Buy</button>
-    </li>
-    <!-- Add rest of themes -->
-  </ul>
+<ul id="themeShop">
+  <li data-theme="theme-blood" data-cost="100">
+    Blood Theme - 100 pts 
+    <button class="buy-btn">Buy</button>
+  </li>
+  <li data-theme="theme-sapphire-steel" data-cost="120">
+    Sapphire & Steel - 120 pts 
+    <button class="buy-btn">Buy</button>
+  </li>
+  <li data-theme="theme-emerald-charcoal" data-cost="110">
+    Emerald & Charcoal - 110 pts 
+    <button class="buy-btn">Buy</button>
+  </li>
+  <li data-theme="theme-digital-twilight" data-cost="130">
+    Digital Twilight - 130 pts 
+    <button class="buy-btn">Buy</button>
+  </li>
+  <li data-theme="theme-coral-aqua" data-cost="130">
+    Coral & Aqua - 130 pts 
+    <button class="buy-btn">Buy</button>
+  </li>
+  <li data-theme="theme-electric-citrus" data-cost="120">
+    Electric Citrus - 120 pts 
+    <button class="buy-btn">Buy</button>
+  </li>
+  <li data-theme="theme-artisan-clay" data-cost="110">
+    Artisan Clay - 110 pts 
+    <button class="buy-btn">Buy</button>
+  </li>
+  <li data-theme="theme-forest-canopy" data-cost="125">
+    Forest Canopy - 125 pts 
+    <button class="buy-btn">Buy</button>
+  </li>
+  <li data-theme="theme-ocean-depth" data-cost="130">
+    Ocean Depth - 130 pts 
+    <button class="buy-btn">Buy</button>
+  </li>
+  <li data-theme="theme-desert-sunset" data-cost="120">
+    Desert Sunset - 120 pts 
+    <button class="buy-btn">Buy</button>
+  </li>
+  <li data-theme="theme-monochrome-focus" data-cost="100">
+    Monochrome Focus - 100 pts 
+    <button class="buy-btn">Buy</button>
+  </li>
+  <li data-theme="theme-soft-nordic" data-cost="90">
+    Soft Nordic Neutral - 90 pts 
+    <button class="buy-btn">Buy</button>
+  </li>
+  <li data-theme="theme-peach-retro" data-cost="95">
+    Peach Retro Pop - 95 pts 
+    <button class="buy-btn">Buy</button>
+  </li>
+  <li data-theme="theme-cyberpunk" data-cost="150">
+    Cyberpunk Glow - 150 pts 
+    <button class="buy-btn">Buy</button>
+  </li>
+  <li data-theme="theme-plum-gold" data-cost="140">
+    Plum & Gold - 140 pts 
+    <button class="buy-btn">Buy</button>
+  </li>
+</ul>
 
 
   <!-- Coupons Shop -->
