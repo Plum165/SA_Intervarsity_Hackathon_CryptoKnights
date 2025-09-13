@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -63,7 +64,7 @@
     <main id="home" class="page active">
       <section class="left-column">
         <div class="content-box current-budget">
-          <h3>Current budget</h3>
+          <h3>Current budget plan</h3>
           <p class="current-budget-text">
   You haven't created any budgets yet. Start by adding your first budget to track your income and expenses!
 </p>
@@ -322,8 +323,10 @@
       <div class="content-box stocks-graph">
   <h3>FNB Stock Performance</h3>
   <p>Visual representation of FNB's recent stock performance.</p>
-  <iframe src="https://s.tradingview.com/widgetembed/?symbol=JSE:FNB&interval=D&hidesidetoolbar=1&symboledit=1&saveimage=1&toolbarbg=f1f3f6&studies=[]&theme=dark&style=1" width="100%" height="400" frameborder="0" allowtransparency="true" scrolling="no"></iframe>
-</div>
+ <iframe
+  src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:AAPL&interval=D&hidesidetoolbar=1&symboledit=1&saveimage=1&toolbarbg=f1f3f6&studies=[]&theme=light&style=1"
+  width="100%" height="400" frameborder="0" allowtransparency="true" scrolling="no">
+</iframe></div>
 
 
       <div class="content-box portfolio-analysis">
@@ -336,7 +339,7 @@
     <p><strong>Remaining Cash:</strong> ZAR 3,000</p>
   </div>
 
-  <canvas id="portfolioChart" height="250"></canvas>
+<canvas id="portfolioChart" width="500" height="300"></canvas>
 
   <button class="learn-more-btn">View Detailed Analysis</button>
 </div>
