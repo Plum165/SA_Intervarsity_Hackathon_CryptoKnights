@@ -1,0 +1,386 @@
+/* -------- Default Theme Variables -------- */
+:root {
+    --bg-color: #0d0221; /* Dark purple/blue background */
+    --primary-accent: #6f42c1; /* Lighter purple for active tabs/buttons */
+    --secondary-accent: #3b0066; /* Slightly darker purple for inactive tabs/borders */
+    --text-color: #ffffff; /* White text */
+    --box-bg-color: rgba(20, 0, 40, 0.85); /* Background for content boxes */
+    --border-color: #3b0066; /* Border color for content boxes */
+    --header-bg-color: #0a0014; /* Header/top bar background */
+    --button-hover-bg: #8a4ed8; /* Button hover state */
+    --button-gradient: linear-gradient(90deg, #00c6ff, #7a00ff); /* Default from login */
+}
+
+/* Basic Reset and Body Styling */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: radial-gradient(circle at center, #0d0221, var(--bg-color));
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow: hidden; /* To prevent scrollbars from the background effect */
+}
+
+/* Main Container for the entire application interface */
+.app-container {
+    width: 100%;
+    max-width: 1200px; /* Max width for the app container */
+    margin: 20px auto; /* Center the app container with some margin */
+    border-radius: 10px;
+    overflow: hidden; /* Ensures child elements respect border-radius */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    background: var(--header-bg-color); /* Matches the top bar background */
+}
+
+/* -------- Header Section -------- */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: var(--header-bg-color);
+    border-bottom: 1px solid var(--secondary-accent);
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    color: var(--text-color);
+}
+
+.logo span {
+    font-size: 14px;
+    display: block;
+    opacity: 0.7;
+    letter-spacing: 1px;
+}
+
+.auth-buttons button {
+    background: var(--primary-accent);
+    color: var(--text-color);
+    border: none;
+    padding: 8px 15px;
+    margin-left: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.auth-buttons button:hover {
+    background-color: var(--button-hover-bg);
+}
+
+/* -------- Navigation Bar -------- */
+nav {
+    display: flex;
+    justify-content: flex-start;
+    background-color: var(--header-bg-color); /* Same as header for continuity */
+    padding: 0 20px;
+    border-bottom: 1px solid var(--secondary-accent);
+}
+
+nav a {
+    padding: 12px 20px;
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: bold;
+    font-size: 15px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    border-bottom: 3px solid transparent; /* For active state highlight */
+}
+
+nav a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-bottom-color: var(--primary-accent);
+}
+
+nav a.active {
+    background: linear-gradient(90deg, var(--primary-accent), var(--button-hover-bg)); /* Active tab gradient */
+    border-bottom-color: var(--primary-accent);
+}
+
+/* -------- Main Content Area -------- */
+main {
+    display: flex;
+    padding: 20px;
+    gap: 20px; /* Space between columns */
+    background: radial-gradient(circle at center, #0d0221, var(--bg-color)); /* Ensure main content has the background */
+}
+
+.left-column, .right-column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.left-column {
+    flex: 2; /* Takes more space */
+}
+
+.right-column {
+    flex: 1; /* Takes less space */
+}
+
+.content-box {
+    background-color: var(--box-bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.content-box h3 {
+    margin-top: 0;
+    color: var(--primary-accent);
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.current-budget-text {
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Placeholder styles for different box heights */
+.quick-summary {
+    min-height: 150px; 
+}
+
+.rewards, .map, .recommendations {
+    min-height: 120px; 
+}
+
+.map {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 100 100"><rect x="0" y="0" width="100" height="100" fill="%231a0033"/><circle cx="50" cy="50" r="40" fill="%233b0066"/><circle cx="50" cy="50" r="30" fill="%235a0099"/><path d="M50 10 L60 40 L90 50 L60 60 L50 90 L40 60 L10 50 L40 40 Z" fill="%238a4ed8" stroke="%23ffffff" stroke-width="1"/></svg>');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 20px;
+    opacity: 0.7;
+}
+
+/* -------- Theme Switcher Styles -------- */
+.theme-switcher {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    z-index: 1000; /* Ensure it's on top */
+}
+
+.theme-switcher select {
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+    background: var(--secondary-accent); /* Use a theme variable */
+    color: var(--text-color);
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+/* -------- Theme Definitions -------- */
+body.theme-default {
+    --bg-color: #0d0221;
+    --primary-accent: #6f42c1;
+    --secondary-accent: #3b0066;
+    --text-color: #ffffff;
+    --box-bg-color: rgba(20, 0, 40, 0.85);
+    --border-color: #3b0066;
+    --header-bg-color: #0a0014;
+    --button-hover-bg: #8a4ed8;
+}
+
+body.theme-red-blue {
+    --bg-color: #0b0b1a;
+    --primary-accent: #ff0000;
+    --secondary-accent: #0066ff;
+    --text-color: #ffffff;
+    --box-bg-color: rgba(15, 15, 30, 0.85);
+    --border-color: #0066ff;
+    --header-bg-color: #050510;
+    --button-hover-bg: #cc0000;
+}
+
+body.theme-spiderman {
+    --bg-color: #000000;
+    --primary-accent: #b71c1c; /* Red */
+    --secondary-accent: #512da8; /* Deep Purple */
+    --text-color: #ffffff;
+    --box-bg-color: rgba(20, 0, 40, 0.85);
+    --border-color: #512da8;
+    --header-bg-color: #1a0000;
+    --button-hover-bg: #d32f2f;
+}
+
+body.theme-blood {
+    --bg-color: #1a0000;
+    --primary-accent: #8b0000; /* Dark Red */
+    --secondary-accent: #ff1a1a; /* Brighter Red */
+    --text-color: #ffffff;
+    --box-bg-color: rgba(30, 0, 0, 0.85);
+    --border-color: #ff1a1a;
+    --header-bg-color: #100000;
+    --button-hover-bg: #a00000;
+}
+
+body.theme-sapphire-steel {
+    --bg-color: #00111f;
+    --primary-accent: #1f3b73;
+    --secondary-accent: #a8a9ad;
+    --text-color: #ffffff;
+    --box-bg-color: rgba(0, 17, 31, 0.85);
+    --border-color: #1f3b73;
+    --header-bg-color: #000810;
+    --button-hover-bg: #2f5b93;
+}
+
+body.theme-emerald-charcoal {
+    --bg-color: #0f1f1a;
+    --primary-accent: #006644;
+    --secondary-accent: #2c2c2c;
+    --text-color: #ffffff;
+    --box-bg-color: rgba(15, 31, 26, 0.85);
+    --border-color: #006644;
+    --header-bg-color: #050a0a;
+    --button-hover-bg: #008055;
+}
+
+body.theme-digital-twilight {
+    --bg-color: #100020;
+    --primary-accent: #301060;
+    --secondary-accent: #00aaff;
+    --text-color: #ffffff;
+    --box-bg-color: rgba(16, 0, 32, 0.85);
+    --border-color: #301060;
+    --header-bg-color: #050010;
+    --button-hover-bg: #402070;
+}
+
+body.theme-coral-aqua {
+    --bg-color: #002733;
+    --primary-accent: #ff6f61;
+    --secondary-accent: #00e6e6;
+    --text-color: #ffffff;
+    --box-bg-color: rgba(0, 39, 51, 0.85);
+    --border-color: #ff6f61;
+    --header-bg-color: #00101a;
+    --button-hover-bg: #ff8f81;
+}
+
+body.theme-electric-citrus {
+    --bg-color: #1a0f00;
+    --primary-accent: #ffcc00;
+    --secondary-accent: #ff6600;
+    --text-color: #ffffff;
+    --box-bg-color: rgba(26, 15, 0, 0.85);
+    --border-color: #ffcc00;
+    --header-bg-color: #100500;
+    --button-hover-bg: #ffe033;
+}
+
+body.theme-artisan-clay {
+    --bg-color: #2b1a12;
+    --primary-accent: #a0522d;
+    --secondary-accent: #d2691e;
+    --text-color: #ffffff;
+    --box-bg-color: rgba(43, 26, 18, 0.85);
+    --border-color: #a0522d;
+    --header-bg-color: #1a0e0a;
+    --button-hover-bg: #b0623d;
+}
+
+body.theme-forest-canopy {
+    --bg-color: #0b1a0f;
+    --primary-accent: #004d00;
+    --secondary-accent: #8b4513;
+    --text-color: #ffffff;
+    --box-bg-color: rgba(11, 26, 15, 0.85);
+    --border-color: #004d00;
+    --header-bg-color: #050a07;
+    --button-hover-bg: #006600;
+}
+
+body.theme-ocean-depth {
+    --bg-color: #001f33;
+    --primary-accent: #003366;
+    --secondary-accent: #00cccc;
+    --text-color: #ffffff;
+    --box-bg-color: rgba(0, 31, 51, 0.85);
+    --border-color: #003366;
+    --header-bg-color: #00101a;
+    --button-hover-bg: #004488;
+}
+
+body.theme-desert-sunset {
+    --bg-color: #331a00;
+    --primary-accent: #ff6600;
+    --secondary-accent: #ffcc66;
+    --text-color: #ffffff;
+    --box-bg-color: rgba(51, 26, 0, 0.85);
+    --border-color: #ff6600;
+    --header-bg-color: #201000;
+    --button-hover-bg: #ff8800;
+}
+
+body.theme-monochrome-focus {
+    --bg-color: #111111;
+    --primary-accent: #444444;
+    --secondary-accent: #ffffff;
+    --text-color: #ffffff;
+    --box-bg-color: rgba(17, 17, 17, 0.85);
+    --border-color: #444444;
+    --header-bg-color: #050505;
+    --button-hover-bg: #555555;
+}
+
+body.theme-soft-nordic {
+    --bg-color: #f2f2f2;
+    --primary-accent: #cccccc;
+    --secondary-accent: #a3a3a3;
+    --text-color: #000000; /* Changed for dark text on light background */
+    --box-bg-color: rgba(240, 240, 240, 0.85);
+    --border-color: #cccccc;
+    --header-bg-color: #e0e0e0;
+    --button-hover-bg: #dddddd;
+}
+
+body.theme-peach-retro {
+    --bg-color: #2a0d0d;
+    --primary-accent: #ff9999;
+    --secondary-accent: #ff6666;
+    --text-color: #ffffff;
+    --box-bg-color: rgba(42, 13, 13, 0.85);
+    --border-color: #ff9999;
+    --header-bg-color: #1a0808;
+    --button-hover-bg: #ffb3b3;
+}
+
+body.theme-cyberpunk {
+    --bg-color: #050011;
+    --primary-accent: #ff00ff;
+    --secondary-accent: #00ffff;
+    --text-color: #ffffff;
+    --box-bg-color: rgba(5, 0, 17, 0.85);
+    --border-color: #ff00ff;
+    --header-bg-color: #000005;
+    --button-hover-bg: #ff33ff;
+}
+
+body.theme-plum-gold {
+    --bg-color: #200020;
+    --primary-accent: #800080;
+    --secondary-accent: #ffd700;
+    --text-color: #ffffff;
+    --box-bg-color: rgba(32, 0, 32, 0.85);
+    --border-color: #800080;
+    --header-bg-color: #100010;
+    --button-hover-bg: #990099;
+}
