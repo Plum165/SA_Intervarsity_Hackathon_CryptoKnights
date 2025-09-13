@@ -1,99 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Budget Dynamic Flow - Home</title>
-    <link rel="stylesheet" href="style_main.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Budget Dynamic Flow</title>
+  <link rel="stylesheet" href="style_main.css">
 </head>
 <body class="theme-default">
-    <!-- Theme Switcher  -->
-    <div class="theme-switcher">
-        <select id="theme-select">
-            <option value="theme-default">Default</option>
-            <option value="theme-red-blue">Red - Blue</option>
-            <option value="theme-spiderman">Spiderman</option>
-            <option value="theme-blood">Blood</option>
-            <option value="theme-sapphire-steel">Sapphire & Steel</option>
-            <option value="theme-emerald-charcoal">Emerald & Charcoal</option>
-            <option value="theme-digital-twilight">Digital Twilight</option>
-            <option value="theme-coral-aqua">Coral & Aqua</option>
-            <option value="theme-electric-citrus">Electric Citrus</option>
-            <option value="theme-artisan-clay">Artisan Clay</option>
-            <option value="theme-forest-canopy">Forest Canopy</option>
-            <option value="theme-ocean-depth">Ocean Depth</option>
-            <option value="theme-desert-sunset">Desert Sunset</option>
-            <option value="theme-monochrome-focus">Monochrome Focus</option>
-            <option value="theme-soft-nordic">Soft Nordic Neutral</option>
-            <option value="theme-peach-retro">Peach Retro Pop</option>
-            <option value="theme-cyberpunk">Cyberpunk Glow</option>
-            <option value="theme-plum-gold">Plum & Gold</option>
+  <!-- Theme Switcher -->
+  <div class="theme-switcher">
+    <select id="theme-select">
+      <option value="theme-default">Default</option>
+      <option value="theme-red-blue">Red - Blue</option>
+      <option value="theme-spiderman">Spiderman</option>
+      <option value="theme-blood">Blood</option>
+      <option value="theme-sapphire-steel">Sapphire & Steel</option>
+      <option value="theme-emerald-charcoal">Emerald & Charcoal</option>
+      <option value="theme-digital-twilight">Digital Twilight</option>
+      <option value="theme-coral-aqua">Coral & Aqua</option>
+      <option value="theme-electric-citrus">Electric Citrus</option>
+      <option value="theme-artisan-clay">Artisan Clay</option>
+      <option value="theme-forest-canopy">Forest Canopy</option>
+      <option value="theme-ocean-depth">Ocean Depth</option>
+      <option value="theme-desert-sunset">Desert Sunset</option>
+      <option value="theme-monochrome-focus">Monochrome Focus</option>
+      <option value="theme-soft-nordic">Soft Nordic Neutral</option>
+      <option value="theme-peach-retro">Peach Retro Pop</option>
+      <option value="theme-cyberpunk">Cyberpunk Glow</option>
+      <option value="theme-plum-gold">Plum & Gold</option>
+    </select>
+  </div>
 
-            <!-- <option value="theme-my-custom">My Custom Theme</option> -->
-        </select>
-    </div>
+  <div class="app-container">
+    <header>
+      <div class="logo">BUDGET <span>DYNAMIC FLOW</span></div>
+      <div class="auth-buttons">
+        <button>Login</button>
+        <button>SignUp</button>
+      </div>
+    </header>
 
-    <div class="app-container">
-        <header>
-            <div class="logo">
-                BUDGET
-                <span>DYNAMIC FLOW</span>
-            </div>
-            <div class="auth-buttons">
-                <button>Login</button>
-                <button>SignUp</button>
-            </div>
-        </header>
+    <nav>
+  <a href="#" data-page="home" class="active">Home</a>
+  <a href="#" data-page="budget">Budget</a>
+  <a href="#" data-page="summary">Summary</a>
+  <a href="#" data-page="investing">Investing</a>
+  <a href="#" data-page="about">About</a>
+</nav>
 
-        <nav>
-            <a href="#" class="active">Home</a>
-            <a href="budget.html">Budget</a> <!--- If we cannot place it in this page --->
-            <a href="#">Summary</a>
-            <a href="#">Investing</a>
-            <a href="#">About</a>
-        </nav>
 
-        <main>
-            <section class="left-column">
-                <div class="content-box current-budget">
-                    <h3>Current budget</h3>
-                    <p class="current-budget-text">
-                        Thare ipsum doler is amet lasadore mvit,
-                        doire sicredes l'ine sfraguta teing tacent, and
-                        saim pomer and it repleed any buget card.
-                    </p>
-                </div>
+    <!-- HOME PAGE -->
+    <main id="home" class="page active">
+      <section class="left-column">
+        <div class="content-box current-budget">
+          <h3>Current budget</h3>
+          <p class="current-budget-text">
+            Thare ipsum doler is amet lasadore mvit, doire sicredes l'ine sfraguta teing tacent, and saim pomer and it repleed any buget card.
+          </p>
+        </div>
+        <div class="content-box quick-summary">
+          <h3>Quick Summary</h3>
+          <p>Financial overview and recent activities will appear here.</p>
+        </div>
+      </section>
 
-                <div class="content-box quick-summary">
-                    <h3>Quick Summary</h3>
-                    <!-- Placeholder for quick summary content -->
-                    <p>Financial overview and recent activities will appear here.</p>
-                </div>
-            </section>
+      <section class="right-column">
+        <div class="content-box rewards">
+          <h3>Rewards</h3>
+          <p>Discover your earned rewards and benefits.</p>
+        </div>
+        <div class="content-box map">
+          <h3>Map</h3>
+          <p>Visual representation of spending locations.</p>
+        </div>
+        <div class="content-box recommendations">
+          <h3>Recommendations</h3>
+          <p>Personalized financial advice and recommendations.</p>
+        </div>
+      </section>
+    </main>
 
-            <section class="right-column">
-                <div class="content-box rewards">
-                    <h3>Rewards</h3>
-                    <!-- Placeholder for rewards content -->
-                    <p>Discover your earned rewards and benefits.</p>
-                </div>
+    <!-- BUDGET PAGE -->
+    <main id="budget" class="page">
+      <section class="new-budget">
+        <h3>New Budget</h3>
+        <form>
+          <label for="incomeExpense">Income/Expense</label>
+          <select id="incomeExpense">
+            <option value="income">Income</option>
+            <option value="expense">Expense</option>
+          </select>
 
-                <div class="content-box map">
-                    <h3>Map</h3>
-                    <!-- Placeholder for map content (e.g., interactive map or image) -->
-                    <p>Visual representation of spending locations.</p>
-                </div>
+          <label for="fixedFlexible">Fixed/Flexible</label>
+          <select id="fixedFlexible">
+            <option value="fixed">Fixed</option>
+            <option value="flexible">Flexible</option>
+          </select>
 
-                <div class="content-box recommendations">
-                    <h3>Recommendations</h3>
-                    <!-- Placeholder for recommendations content -->
-                    <p>Personalized financial advice and recommendations.</p>
-                </div>
-            </section>
-        </main>
-    </div>
+          <label for="budgetName">Name</label>
+          <input type="text" id="budgetName" placeholder="e.g. Rent, Groceries">
 
-    <!-- JavaScript for Theme Switching -->
-    <script src="theme.js"></script>
+          <label for="budgetAmount">Amount</label>
+          <input type="number" id="budgetAmount" placeholder="Enter amount">
+
+          <div class="form-buttons">
+            <button type="reset">Cancel</button>
+            <button type="submit">Submit</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="recommended-budget">
+        <h3>Recommended Budget</h3>
+        <div class="placeholder-box">
+          <p>System-generated budget suggestions will appear here.</p>
+        </div>
+      </section>
+
+      <section class="custom-budget">
+        <h3>Custom Budget</h3>
+        <div class="placeholder-box">
+          <p>Your custom budgets will appear here.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="theme.js"></script>
 </body>
 </html>

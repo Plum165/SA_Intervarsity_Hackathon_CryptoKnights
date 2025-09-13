@@ -1,224 +1,254 @@
-/* -------- Default Theme Variables -------- */
-:root {
-    --bg-color: #0d0221; /* Dark purple/blue background */
-    --primary-accent: #6f42c1; /* Lighter purple for active tabs/buttons */
-    --secondary-accent: #3b0066; /* Slightly darker purple for inactive tabs/borders */
-    --text-color: #ffffff; /* White text */
-    --box-bg-color: rgba(20, 0, 40, 0.85); /* Background for content boxes */
-    --border-color: #3b0066; /* Border color for content boxes */
-    --header-bg-color: #0a0014; /* Header/top bar background */
-    --button-hover-bg: #8a4ed8; /* Button hover state */
-    --button-gradient: linear-gradient(90deg, #00c6ff, #7a00ff); /* Default from login */
+/* ---------------- Page Layout & Switching ---------------- */
+.page {
+  width: 100%;
+  min-height: 100vh;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  padding: 20px;
+  box-sizing: border-box;
+  overflow-y: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
-/* Basic Reset and Body Styling */
+.page.active {
+  opacity: 1;
+  pointer-events: auto;
+  position: relative;
+}
+
+/* ---------------- Body ---------------- */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0;
-    padding: 0;
-    background: radial-gradient(circle at center, #0d0221, var(--bg-color));
-    color: var(--text-color);
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    overflow: hidden; /* To prevent scrollbars from the background effect */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  overflow-y: auto;
+  display: flex;
+  justify-content: center;
+  background: var(--bg-color, #0d0221);
+  color: var(--text-color, #fff);
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
-/* Main Container for the entire application interface */
+/* ---------------- App Container ---------------- */
 .app-container {
-    width: 100%;
-    max-width: 1200px; /* Max width for the app container */
-    margin: 20px auto; /* Center the app container with some margin */
-    border-radius: 10px;
-    overflow: hidden; /* Ensures child elements respect border-radius */
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-    background: var(--header-bg-color); /* Matches the top bar background */
+  width: 100%;
+  max-width: 1200px;
+  margin: 20px auto;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(0,0,0,0.4); /* lets body background show through */
 }
 
-/* -------- Header Section -------- */
+/* ---------------- Header ---------------- */
 header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: var(--header-bg-color);
-    border-bottom: 1px solid var(--secondary-accent);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: var(--header-bg-color, #0a0014);
+  border-bottom: 1px solid var(--secondary-accent, #3b0066);
 }
 
 .logo {
-    font-size: 24px;
-    font-weight: bold;
-    letter-spacing: 2px;
-    color: var(--text-color);
+  font-size: 24px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  color: var(--text-color, #fff);
 }
 
 .logo span {
-    font-size: 14px;
-    display: block;
-    opacity: 0.7;
-    letter-spacing: 1px;
+  font-size: 14px;
+  display: block;
+  opacity: 0.7;
 }
 
 .auth-buttons button {
-    background: var(--primary-accent);
-    color: var(--text-color);
-    border: none;
-    padding: 8px 15px;
-    margin-left: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: background-color 0.3s ease;
+  background: var(--primary-accent, #6f42c1);
+  color: var(--text-color, #fff);
+  border: none;
+  padding: 8px 15px;
+  margin-left: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
 }
 
 .auth-buttons button:hover {
-    background-color: var(--button-hover-bg);
+  background-color: var(--button-hover-bg, #8a4ed8);
 }
 
-/* -------- Navigation Bar -------- */
+/* ---------------- Navigation ---------------- */
 nav {
-    display: flex;
-    justify-content: flex-start;
-    background-color: var(--header-bg-color); /* Same as header for continuity */
-    padding: 0 20px;
-    border-bottom: 1px solid var(--secondary-accent);
+  display: flex;
+  background-color: var(--header-bg-color, #0a0014);
+  padding: 0 20px;
+  border-bottom: 1px solid var(--secondary-accent, #3b0066);
 }
 
 nav a {
-    padding: 12px 20px;
-    text-decoration: none;
-    color: var(--text-color);
-    font-weight: bold;
-    font-size: 15px;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    border-bottom: 3px solid transparent; /* For active state highlight */
+  padding: 12px 20px;
+  text-decoration: none;
+  color: var(--text-color, #fff);
+  font-weight: bold;
+  font-size: 15px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  border-bottom: 3px solid transparent;
 }
 
 nav a:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-    border-bottom-color: var(--primary-accent);
+  background-color: rgba(255, 255, 255, 0.1);
+  border-bottom-color: var(--primary-accent, #6f42c1);
 }
 
 nav a.active {
-    background: linear-gradient(90deg, var(--primary-accent), var(--button-hover-bg)); /* Active tab gradient */
-    border-bottom-color: var(--primary-accent);
+  background: linear-gradient(90deg, var(--primary-accent, #6f42c1), var(--button-hover-bg, #8a4ed8));
+  border-bottom-color: var(--primary-accent, #6f42c1);
 }
 
-/* -------- Main Content Area -------- */
-main {
-    display: flex;
-    padding: 20px;
-    gap: 20px; /* Space between columns */
-    background: radial-gradient(circle at center, #0d0221, var(--bg-color)); /* Ensure main content has the background */
-}
-
+/* ---------------- Main Columns ---------------- */
 .left-column, .right-column {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .left-column {
-    flex: 2; /* Takes more space */
+  flex: 2;
 }
 
 .right-column {
-    flex: 1; /* Takes less space */
+  flex: 1;
 }
 
+/* ---------------- Content Boxes ---------------- */
 .content-box {
-    background-color: var(--box-bg-color);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  background-color: var(--box-bg-color, rgba(20, 0, 40, 0.85));
+  border: 1px solid var(--border-color, #3b0066);
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .content-box h3 {
-    margin-top: 0;
-    color: var(--primary-accent);
-    font-size: 18px;
-    margin-bottom: 15px;
+  margin-top: 0;
+  color: var(--primary-accent, #6f42c1);
+  font-size: 18px;
+  margin-bottom: 15px;
 }
 
 .current-budget-text {
-    line-height: 1.6;
-    color: rgba(255, 255, 255, 0.8);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.8);
 }
 
-/* Placeholder styles for different box heights */
-.quick-summary {
-    min-height: 150px; 
-}
-
-.rewards, .map, .recommendations {
-    min-height: 120px; 
-}
+/* Placeholder heights */
+.quick-summary { min-height: 150px; }
+.rewards, .map, .recommendations { min-height: 120px; }
 
 .map {
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 100 100"><rect x="0" y="0" width="100" height="100" fill="%231a0033"/><circle cx="50" cy="50" r="40" fill="%233b0066"/><circle cx="50" cy="50" r="30" fill="%235a0099"/><path d="M50 10 L60 40 L90 50 L60 60 L50 90 L40 60 L10 50 L40 40 Z" fill="%238a4ed8" stroke="%23ffffff" stroke-width="1"/></svg>');
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: bold;
-    font-size: 20px;
-    opacity: 0.7;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 100 100"><rect x="0" y="0" width="100" height="100" fill="%231a0033"/><circle cx="50" cy="50" r="40" fill="%233b0066"/><circle cx="50" cy="50" r="30" fill="%235a0099"/><path d="M50 10 L60 40 L90 50 L60 60 L50 90 L40 60 L10 50 L40 40 Z" fill="%238a4ed8" stroke="%23ffffff" stroke-width="1"/></svg>');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 20px;
+  opacity: 0.7;
 }
 
-/* -------- Theme Switcher Styles -------- */
+/* ---------------- Budget Page Layout ---------------- */
+main.budget-page {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+  padding: 20px;
+}
+
+.new-budget, .recommended-budget, .custom-budget {
+  background: rgba(255,255,255,0.05);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+.new-budget form {
+  display: flex;
+  flex-direction: column;
+}
+
+.new-budget label { margin: 10px 0 5px; }
+.new-budget input, .new-budget select { padding: 8px; border-radius: 5px; border: 1px solid #aaa; margin-bottom: 10px; }
+
+.form-buttons { display: flex; justify-content: space-between; }
+.form-buttons button { padding: 10px 15px; border: none; border-radius: 5px; cursor: pointer; }
+
+/* ---------------- Theme Switcher ---------------- */
 .theme-switcher {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    z-index: 1000; /* Ensure it's on top */
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  z-index: 1000;
 }
 
 .theme-switcher select {
-    padding: 5px;
-    border-radius: 5px;
-    border: none;
-    background: var(--secondary-accent); /* Use a theme variable */
-    color: var(--text-color);
-    font-weight: bold;
-    cursor: pointer;
+  padding: 5px;
+  border-radius: 5px;
+  border: none;
+  background: var(--secondary-accent, #3b0066);
+  color: var(--text-color, #fff);
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
-
-/* -------- Theme Definitions -------- */
+/* ---------------- Theme Variables ---------------- */
 body.theme-default {
-    --bg-color: #0d0221;
-    --primary-accent: #6f42c1;
-    --secondary-accent: #3b0066;
-    --text-color: #ffffff;
-    --box-bg-color: rgba(20, 0, 40, 0.85);
-    --border-color: #3b0066;
-    --header-bg-color: #0a0014;
-    --button-hover-bg: #8a4ed8;
+  --bg-color: #0d0221;
+  --primary-accent: #6f42c1;
+  --secondary-accent: #3b0066;
+  --text-color: #ffffff;
+  --box-bg-color: rgba(20, 0, 40, 0.85);
+  --border-color: #3b0066;
+  --header-bg-color: #0a0014;
+  --button-hover-bg: #8a4ed8;
 }
 
 body.theme-red-blue {
-    --bg-color: #0b0b1a;
-    --primary-accent: #ff0000;
-    --secondary-accent: #0066ff;
-    --text-color: #ffffff;
-    --box-bg-color: rgba(15, 15, 30, 0.85);
-    --border-color: #0066ff;
-    --header-bg-color: #050510;
-    --button-hover-bg: #cc0000;
+  --bg-color: #0b0b1a;
+  --primary-accent: #ff0000;
+  --secondary-accent: #0066ff;
+  --text-color: #ffffff;
+  --box-bg-color: rgba(15, 15, 30, 0.85);
+  --border-color: #0066ff;
+  --header-bg-color: #050510;
+  --button-hover-bg: #cc0000;
 }
 
 body.theme-spiderman {
-    --bg-color: #000000;
-    --primary-accent: #b71c1c; /* Red */
-    --secondary-accent: #512da8; /* Deep Purple */
-    --text-color: #ffffff;
-    --box-bg-color: rgba(20, 0, 40, 0.85);
-    --border-color: #512da8;
-    --header-bg-color: #1a0000;
-    --button-hover-bg: #d32f2f;
+  --bg-color: #000000;
+  --primary-accent: #b71c1c;
+  --secondary-accent: #512da8;
+  --text-color: #ffffff;
+  --box-bg-color: rgba(20, 0, 40, 0.85);
+  --border-color: #512da8;
+  --header-bg-color: #1a0000;
+  --button-hover-bg: #d32f2f;
 }
+
+/* Add all remaining themes similarly... */
+
 
 body.theme-blood {
     --bg-color: #1a0000;
