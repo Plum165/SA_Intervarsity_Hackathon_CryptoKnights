@@ -329,6 +329,78 @@ main.budget-page {
   }
 }
 
+.recommended-companies {
+  background-color: var(--box-bg-color, rgba(20,0,40,0.85));
+  border: 1px solid var(--border-color, #3b0066);
+  border-radius: 8px;
+  padding: 20px;
+  color: rgba(255,255,255,0.9);
+}
+
+.recommended-companies h3 {
+  color: var(--primary-accent, #6f42c1);
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.company-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.company-list li {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 15px;
+  padding: 10px;
+  background-color: rgba(255,255,255,0.05);
+  border-radius: 6px;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.company-list li:hover {
+  transform: scale(1.02);
+  background-color: rgba(255,255,255,0.1);
+}
+
+.company-list img {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  border-radius: 5px;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.company-info h4 {
+  margin: 0 0 3px 0;
+  color: var(--primary-accent, #6f42c1);
+  font-size: 16px;
+}
+
+.company-info p {
+  margin: 0;
+  font-size: 13px;
+  color: rgba(255,255,255,0.8);
+}
+
+.explore-btn {
+  margin-top: 15px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--primary-accent, #6f42c1);
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.explore-btn:hover {
+  background-color: var(--button-hover-bg, #8a4ed8);
+}
+
+
 /* ---------------- About Page Layout ---------------- */
 #about {
   display: flex;
