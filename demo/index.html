@@ -93,9 +93,55 @@
 
 
         <div class="content-box recommendations">
-          <h3>Recommendations</h3>
-          <p>Personalized financial advice and recommendations.</p>
-        </div>
+  <h3>Rewards Shop</h3>
+  <p>Use your points to unlock new themes & coupons.</p>
+
+ <!-- Rewards Shop -->
+<div class="content-box recommendations">
+  <h3>Rewards Shop</h3>
+  <p>Use your points to unlock new themes & coupons.</p>
+
+  <!-- Show User Points -->
+  <p><strong>Your Points:</strong> <span id="userPoints">0</span></p>
+
+  <!-- Add Points Button to check if point system works -->
+  <!--<button id="addPointsBtn">+100 Points</button>-->
+
+  <!-- Themes Shop -->
+  <h4>Buyable Themes</h4>
+  <ul id="themeShop">
+    <li data-theme="theme-blood" data-cost="100">
+      Blood Theme - 100 pts 
+      <button class="buy-btn">Buy</button>
+    </li>
+    <li data-theme="theme-sapphire-steel" data-cost="120">
+      Sapphire & Steel - 120 pts 
+      <button class="buy-btn">Buy</button>
+    </li>
+    <li data-theme="theme-emerald-charcoal" data-cost="110">
+      Emerald & Charcoal - 110 pts 
+      <button class="buy-btn">Buy</button>
+    </li>
+    <!-- Add rest of themes -->
+  </ul>
+
+
+  <!-- Coupons Shop -->
+  <h4>Coupons</h4>
+  <ul id="couponShop">
+    <li data-coupon="groceries10" data-cost="50">
+      10% Off Bread - 50 pts 
+      <button class="buy-btn">Buy</button>
+    </li>
+    <li data-coupon="groceries25" data-cost="120">
+      25% Off Frozen-Chips - 120 pts 
+      <button class="buy-btn">Buy</button>
+    </li>
+  </ul>
+</div>
+
+
+
       </section>
     </main>
 
