@@ -28,7 +28,17 @@
       <option value="theme-peach-retro">Peach Retro Pop</option>
       <option value="theme-cyberpunk">Cyberpunk Glow</option>
       <option value="theme-plum-gold">Plum & Gold</option>
-    </select>
+    <option value="theme-custom">Custom</option>
+  </select>
+
+  <!-- Custom Theme Picker (hidden initially) -->
+  <div id="custom-theme-picker" style="display:none; margin-top:10px;">
+    <label>Background Color: <input type="color" id="custom-bg"></label>
+    <label>Primary Accent: <input type="color" id="custom-primary"></label>
+    <label>Secondary Accent: <input type="color" id="custom-secondary"></label>
+    <label>Text Color: <input type="color" id="custom-text"></label>
+    <button id="apply-custom-theme">Apply Theme</button>
+  </div>
   </div>
 
   <div class="app-container">
