@@ -194,6 +194,123 @@ main.budget-page {
 .form-buttons { display: flex; justify-content: space-between; }
 .form-buttons button { padding: 10px 15px; border: none; border-radius: 5px; cursor: pointer; }
 
+/* ---------------- Summary Page Layout ---------------- */
+#summary {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 20px;
+}
+
+.summary-grid .large-box,
+.summary-grid .small-box {
+  background-color: var(--box-bg-color, rgba(20, 0, 40, 0.85));
+  border: 1px solid var(--border-color, #3b0066);
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.summary-grid .large-box h3,
+.summary-grid .small-box h3 {
+  margin-top: 0;
+  color: var(--primary-accent, #6f42c1);
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+.bottom-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+}
+
+.bottom-row .large-box,
+.bottom-row .small-box {
+  background-color: var(--box-bg-color, rgba(20, 0, 40, 0.85));
+  border: 1px solid var(--border-color, #3b0066);
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+/* Placeholder heights for visual consistency */
+.summary-grid .large-box { min-height: 250px; }
+.summary-grid .small-box { min-height: 120px; }
+.bottom-row .large-box { min-height: 200px; }
+.bottom-row .small-box { min-height: 200px; }
+
+/* Optional: make charts and graphs centered */
+.summary-grid .large-box p,
+.summary-grid .small-box p,
+.bottom-row .large-box p,
+.bottom-row .small-box p {
+  color: rgba(255,255,255,0.8);
+  line-height: 1.5;
+}
+/* ---------------- Investing Page Layout ---------------- */
+#investing {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+}
+
+.investing-grid {
+  display: grid;
+  grid-template-columns: 2fr 2fr 1.5fr; /* Left, middle, right */
+  gap: 20px;
+}
+
+.investing-grid .content-box {
+  background-color: var(--box-bg-color, rgba(20,0,40,0.85));
+  border: 1px solid var(--border-color, #3b0066);
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.investing-grid .content-box h3 {
+  margin-top: 0;
+  color: var(--primary-accent, #6f42c1);
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+.investing-grid .content-box p {
+  color: rgba(255,255,255,0.8);
+  line-height: 1.5;
+}
+
+/* Placeholder heights for visualization */
+.how-to-start { min-height: 150px; }
+.stocks-graph { min-height: 180px; }
+.portfolio-analysis { min-height: 180px; }
+.recommended-companies { min-height: 250px; }
+
+/* Responsive Layout */
+@media (max-width: 900px) {
+  .investing-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------------- Responsive ---------------- */
+@media (max-width: 900px) {
+  .summary-grid, .bottom-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+
 /* ---------------- Theme Switcher ---------------- */
 .theme-switcher {
   position: absolute;
