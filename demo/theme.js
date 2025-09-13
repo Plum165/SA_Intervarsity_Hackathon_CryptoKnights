@@ -37,6 +37,8 @@ document.addEventListener('DOMContentLoaded', () => {
     localStorage.setItem('selectedTheme', selectedTheme);
   });
 
+  
+
   // -------- Apply custom theme colors --------
   applyCustomBtn.addEventListener('click', () => {
     const bg = customBg.value;
@@ -92,4 +94,39 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // -------- Show first page by default --------
   if (pages.length > 0) pages[0].classList.add('active');
+// -------- Portfolio / Stocks Graph Setup --------
+const portfolioCtx = document.getElementById('portfolioChart');
+if (portfolioCtx) {
+  const portfolioChart = new Chart(portfolioCtx.getContext('2d'), {
+    type: 'doughnut',
+    data: {
+      labels: ['FNB Shares (2000 ZAR)', 'Remaining Cash (3000 ZAR)'],
+      datasets: [{
+        data: [2000, 3000],
+        backgroundColor: ['#6f42c1', '#3b0066'],
+        borderColor: ['#fff', '#fff'],
+        borderWidth: 2
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          position: 'bottom',
+          labels: { color: '#fff', font: { size: 14 } }
+        },
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              return context.label + ': ZAR ' + context.parsed;
+            }
+          }
+        }
+      }
+    }
+  });
+}
+
+
+  
 });

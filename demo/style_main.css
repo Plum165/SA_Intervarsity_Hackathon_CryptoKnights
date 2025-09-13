@@ -257,6 +257,97 @@ main.budget-page {
   line-height: 1.5;
 }
 /* ---------------- Investing Page Layout ---------------- */
+
+.portfolio-analysis {
+  background-color: rgba(20,0,40,0.85);
+  border: 1px solid #3b0066;
+  border-radius: 8px;
+  padding: 20px;
+  color: rgba(255,255,255,0.9);
+}
+
+.portfolio-analysis h3 {
+  color: #6f42c1;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.portfolio-summary p {
+  margin: 5px 0;
+  font-size: 14px;
+  color: rgba(255,255,255,0.85);
+}
+
+.learn-more-btn {
+  margin-top: 15px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  background-color: #6f42c1;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.learn-more-btn:hover {
+  background-color: #8a4ed8;
+}
+
+.how-to-start {
+  background-color: var(--box-bg-color, rgba(20,0,40,0.85));
+  border: 1px solid var(--border-color, #3b0066);
+  border-radius: 8px;
+  padding: 20px;
+  color: rgba(255,255,255,0.9);
+}
+
+.how-to-start h3 {
+  color: var(--primary-accent, #6f42c1);
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.how-to-start ol.investment-steps {
+  margin-left: 20px;
+  margin-bottom: 15px;
+}
+
+.how-to-start ol.investment-steps li {
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+
+.how-to-start .investment-tips h4 {
+  margin-top: 15px;
+  color: var(--primary-accent, #6f42c1);
+}
+
+.how-to-start .investment-tips ul {
+  list-style-type: disc;
+  margin-left: 20px;
+}
+
+.how-to-start .investment-tips li {
+  margin-bottom: 5px;
+  color: rgba(255,255,255,0.8);
+  font-size: 14px;
+}
+
+.learn-more-btn {
+  margin-top: 15px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--primary-accent, #6f42c1);
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.learn-more-btn:hover {
+  background-color: var(--button-hover-bg, #8a4ed8);
+}
+
 .stocks-graph {
   background-color: rgba(20, 0, 40, 0.85);
   border: 1px solid #3b0066;
