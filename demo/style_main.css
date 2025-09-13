@@ -257,6 +257,25 @@ main.budget-page {
   line-height: 1.5;
 }
 /* ---------------- Investing Page Layout ---------------- */
+.stocks-graph {
+  background-color: rgba(20, 0, 40, 0.85);
+  border: 1px solid #3b0066;
+  border-radius: 8px;
+  padding: 20px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.stocks-graph h3 {
+  color: #6f42c1;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.stocks-graph p {
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+
 #investing {
   display: flex;
   flex-direction: column;
