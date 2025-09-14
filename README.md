@@ -3,6 +3,10 @@
 Welcome to the official **Hackathon Submission Template** for the **South African Intervarsity Hackathon 2025**! This repository is designed to help participants organize their project submissions in a **consistent, judge-friendly structure** while supporting any tech stack.
 
 ---
+## Video links
+This was asked so I am doing just in case
+<https://vimeo.com/1118463607>
+<https://vimeo.com/1118465025>
 
 ## 📂 Repository Structure
 ```
