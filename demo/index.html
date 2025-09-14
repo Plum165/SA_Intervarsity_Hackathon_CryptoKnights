@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.5.141/pdf.min.js"></script>
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -212,50 +214,144 @@
       </section>
     </main>
 
-    <!-- BUDGET PAGE -->
-    <main id="budget" class="page">
-      <section class="new-budget">
-        <h3>New Budget</h3>
-        <form>
-          <label for="incomeExpense">Income/Expense</label>
-          <select id="incomeExpense">
-            <option value="income">Income</option>
-            <option value="expense">Expense</option>
-          </select>
+<main id="budget" class="page">
 
-          <label for="fixedFlexible">Fixed/Flexible</label>
-          <select id="fixedFlexible">
-            <option value="fixed">Fixed</option>
-            <option value="flexible">Flexible</option>
-          </select>
+  <!-- Points Badge at Top -->
+  <section class="user-points theme-card points-top-card">
+    <h3>🏆 Your Points</h3>
+    <div id="pointsDisplay" class="points-badge">0</div>
+  </section>
 
-          <label for="budgetName">Name</label>
-          <input type="text" id="budgetName" placeholder="e.g. Rent, Groceries">
+  <div class="budget-flex-container">
 
-          <label for="budgetAmount">Amount</label>
-          <input type="number" id="budgetAmount" placeholder="Enter amount">
+    <!-- Left Column -->
+    <div class="budget-left">
+
+      <!-- Create a Budget -->
+      <section class="new-budget theme-card compact-card">
+        <h3>Create a Budget</h3>
+
+        <!-- Mode Selector -->
+        <label for="budgetMode" class="form-label">Budget Mode:</label>
+        <select id="budgetMode" class="form-input">
+          <option value="groceries">Groceries Mode</option>
+          <option value="general">General Budget Mode</option>
+        </select>
+
+        <!-- Groceries: PDF + Budget -->
+        <div id="groceriesInputs" class="mode-section">
+          <label for="pdfInput" class="form-label">Upload Receipt (PDF):</label>
+          <input type="file" id="pdfInput" accept="application/pdf" class="form-input">
+
+          <label for="groceriesBudget" class="form-label">Total Grocery Budget (R):</label>
+          <input type="number" id="groceriesBudget" placeholder="e.g., 450" class="form-input">
+        </div>
+
+        <!-- General & Groceries: Form -->
+        <form id="budgetForm">
+          <label for="budgetName" class="form-label">Name:</label>
+          <input type="text" id="budgetName" placeholder="Rent, Electricity, etc." class="form-input" required>
+
+          <div class="badges-row">
+            <div>
+              <label class="form-label">Type:</label>
+              <select id="incomeExpense" class="form-input">
+                <option value="expense">Expense</option>
+                <option value="income">Income</option>
+              </select>
+            </div>
+            <div>
+              <label class="form-label">Category:</label>
+              <select id="fixedFlexible" class="form-input">
+                <option value="fixed">Fixed</option>
+                <option value="flexible">Flexible</option>
+              </select>
+            </div>
+          </div>
+
+          <label for="budgetAmount" class="form-label">Amount (ZAR):</label>
+          <input type="number" id="budgetAmount" placeholder="Enter amount" class="form-input" required>
 
           <div class="form-buttons">
-            <button type="reset">Cancel</button>
-            <button type="submit">Submit</button>
+            <button type="reset" class="theme-btn secondary">Cancel</button>
+            <button type="submit" class="theme-btn primary">Add Budget</button>
           </div>
         </form>
-      </section>
 
-      <section class="recommended-budget">
-        <h3>Recommended Budget</h3>
-        <div class="placeholder-box">
-          <p>System-generated budget suggestions will appear here.</p>
+        <div class="action-buttons">
+          <button id="checkBudgetBtn" class="theme-btn success">✅ Check Budget</button>
+          <button id="clearBudgetBtn" class="theme-btn danger">🗑 Clear All Budgets</button>
         </div>
       </section>
 
-      <section class="custom-budget">
-        <h3>Custom Budget</h3>
-        <div class="placeholder-box">
-          <p>Your custom budgets will appear here.</p>
+      <!-- Recommended Budget (General Mode only) -->
+      <section id="generalModeRecommendations" class="recommended-budget theme-card compact-card mode-section hidden">
+        <h3>💡 Recommended Budget Split <span class="help-icon" data-help="recommendedSplit">?</span></h3>
+        <div id="recommendedBudgetContent">
+          <p>This section shows the recommended 60/20/20 split for Needs, Other, and Savings, and how your current budget aligns.</p>
         </div>
       </section>
-    </main>
+
+      <!-- User Budgets -->
+      <section class="custom-budget theme-card compact-card">
+        <h3>📝 Your Budgets</h3>
+        <div id="customBudget">
+          <p>No budgets added yet.</p>
+        </div>
+      </section>
+
+      <!-- Candy/Snack Analysis (Groceries Mode only) -->
+      <section id="candyAnalysisSection" class="groceries-analysis theme-card compact-card mode-section hidden">
+        <h3>🍬 Candy & Snack Analysis <span class="help-icon" data-help="candyAnalysis">?</span></h3>
+        <div id="candySummary">
+          <p>No analysis yet. Upload a receipt in Groceries Mode.</p>
+        </div>
+      </section>
+    </div>
+
+    <!-- Right Column -->
+    <div class="budget-right">
+
+      <!-- Parsed PDF Items -->
+      <section id="pdfListSection" class="theme-card compact-card mode-section hidden">
+        <h3>📄 Parsed Receipt Items <span class="help-icon" data-help="receiptItems">?</span></h3>
+        <ul id="pdfList">
+          <li>No PDF uploaded yet.</li>
+        </ul>
+      </section>
+
+      <!-- Charts -->
+      <section class="theme-card compact-card charts-section">
+        <h3>📊 Budget Visualizations</h3>
+
+        <div class="chart-container">
+          <h4>Income vs. Expenses <span class="help-icon" data-help="incomeExpenseChart">?</span></h4>
+          <canvas id="incomeExpenseChart"></canvas>
+        </div>
+
+        <div id="budgetSplitChartContainer" class="chart-container mode-section hidden">
+          <h4>Needs (60%) vs. Other (20%) vs. Savings (20%) <span class="help-icon" data-help="needsOtherSavingsChart">?</span></h4>
+          <canvas id="budgetSplitChart"></canvas>
+        </div>
+
+        <div class="chart-container">
+          <h4>Fixed vs. Flexible Costs <span class="help-icon" data-help="fixedFlexibleChart">?</span></h4>
+          <canvas id="fixedFlexibleChart"></canvas>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <!-- Help Modal -->
+  <div id="helpModal" class="modal">
+    <div class="modal-content">
+      <span class="close-button">&times;</span>
+      <h3 id="modalTitle"></h3>
+      <p id="modalBody"></p>
+    </div>
+  </div>
+</main>
+
 
     <!-- SUMMARY PAGE -->
   <main id="summary" class="page active">
@@ -452,5 +548,7 @@
   
 
   <script src="theme.js"></script>
+  <script src="budget.js" defer></script>
+
 </body>
 </html>

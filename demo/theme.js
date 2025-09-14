@@ -1,7 +1,8 @@
-document.addEventListener('DOMContentLoaded', () => {
+pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.5.141/pdf.worker.min.js';
 
+document.addEventListener('DOMContentLoaded', () => {
   // ----------- Load User Data -----------
-  let userPoints = parseInt(localStorage.getItem("userPoints")) || 50; 
+  let userPoints = parseInt(localStorage.getItem("userPoints")) || 50;
   let ownedThemes = JSON.parse(localStorage.getItem("ownedThemes")) || ["theme-default"];
   let ownedCoupons = JSON.parse(localStorage.getItem("ownedCoupons")) || [];
 
@@ -17,6 +18,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const addPointsBtn = document.getElementById("addPointsBtn");
   const ownedThemesList = document.getElementById("ownedThemesList");
   const ownedCouponsList = document.getElementById("ownedCouponsList");
+
+
+
+
+
 
   // ----------- Update Points Display -----------
   const updatePointsDisplay = () => {
@@ -61,18 +67,15 @@ document.addEventListener('DOMContentLoaded', () => {
       alert("You don’t own this theme yet! Unlock it in the Rewards Shop.");
       return;
     }
-
     document.body.classList.forEach(cls => {
       if (cls.startsWith('theme-')) document.body.classList.remove(cls);
     });
     document.body.classList.add(theme);
-
     if (theme === 'theme-custom') {
       customPicker.style.display = 'block';
     } else {
       customPicker.style.display = 'none';
     }
-
     localStorage.setItem("selectedTheme", theme);
   };
 
@@ -86,8 +89,6 @@ document.addEventListener('DOMContentLoaded', () => {
         opt.textContent = theme.replace("theme-", "").replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase());
         themeSelect.appendChild(opt);
       });
-
-      // Restore saved theme if still owned
       const savedTheme = localStorage.getItem("selectedTheme");
       if (savedTheme && ownedThemes.includes(savedTheme)) {
         themeSelect.value = savedTheme;
@@ -96,7 +97,6 @@ document.addEventListener('DOMContentLoaded', () => {
         themeSelect.value = ownedThemes[0];
         applyTheme(ownedThemes[0]);
       }
-
       themeSelect.addEventListener('change', (e) => {
         applyTheme(e.target.value);
       });
@@ -111,24 +111,19 @@ document.addEventListener('DOMContentLoaded', () => {
       const primary = customPrimary.value;
       const secondary = customSecondary.value;
       const text = customText.value;
-
       document.body.style.setProperty('--bg-color', bg);
       document.body.style.setProperty('--primary-accent', primary);
       document.body.style.setProperty('--secondary-accent', secondary);
       document.body.style.setProperty('--text-color', text);
-
       localStorage.setItem('customTheme', JSON.stringify({ bg, primary, secondary, text }));
       alert("Custom theme applied!");
     });
-
-    // Load saved custom theme
     const savedCustom = JSON.parse(localStorage.getItem('customTheme'));
     if (savedCustom) {
       customBg.value = savedCustom.bg;
       customPrimary.value = savedCustom.primary;
       customSecondary.value = savedCustom.secondary;
       customText.value = savedCustom.text;
-
       if (localStorage.getItem("selectedTheme") === 'theme-custom') {
         customPicker.style.display = 'block';
         applyCustomBtn.click();
@@ -142,8 +137,6 @@ document.addEventListener('DOMContentLoaded', () => {
       const li = btn.closest("li");
       const theme = li.dataset.theme;
       const coupon = li.dataset.coupon;
-
-      // Disable already owned items
       if ((theme && ownedThemes.includes(theme)) || (coupon && ownedCoupons.includes(coupon))) {
         btn.disabled = true;
         btn.textContent = "Owned";
@@ -163,31 +156,24 @@ document.addEventListener('DOMContentLoaded', () => {
       const cost = parseInt(li.dataset.cost);
       const theme = li.dataset.theme;
       const coupon = li.dataset.coupon;
-
       if (userPoints < cost) {
         alert("Not enough points to buy this!");
         return;
       }
-
-      // Deduct points
       userPoints -= cost;
       localStorage.setItem("userPoints", userPoints);
       updatePointsDisplay();
-
-      // Add theme or coupon
       if (theme && !ownedThemes.includes(theme)) {
         ownedThemes.push(theme);
         localStorage.setItem("ownedThemes", JSON.stringify(ownedThemes));
         alert(`You unlocked ${theme.replace("theme-", "").replace(/-/g," ").replace(/\b\w/g,c=>c.toUpperCase())}!`);
         populateThemeDropdown();
       }
-
       if (coupon && !ownedCoupons.includes(coupon)) {
         ownedCoupons.push(coupon);
         localStorage.setItem("ownedCoupons", JSON.stringify(ownedCoupons));
         alert(`You unlocked a coupon: ${coupon}!`);
       }
-
       updateRewardsDisplay();
       updateShopButtons();
     });
@@ -210,7 +196,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   if (pages.length > 0) pages[0].classList.add('active');
 
-  // ----------- Portfolio / Stocks Graph -----------
+  // ----------- Portfolio Chart -----------
   const portfolioCtx = document.getElementById('portfolioChart');
   if (portfolioCtx) {
     new Chart(portfolioCtx.getContext('2d'), {
@@ -234,4 +220,5 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  
 });
