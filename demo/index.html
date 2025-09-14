@@ -48,7 +48,8 @@
     <header>
       <div class="logo">BUDGET <span>DYNAMIC FLOW</span></div>
       <div class="auth-buttons">
-        <button>Login</button>
+        <button onclick="window.location.href='login.html'">Login</button>
+
         <button>SignUp</button>
       </div>
     </header>
@@ -101,15 +102,15 @@
 </div>
 
        <div class="map">
-  <iframe
-    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3325.286660456846!2d18.444829!3d-33.966192!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1dcc5009f3e1b1c5%3A0x1234567890abcdef!2sRosebank%20Mall!5e0!3m2!1sen!2sza!4v1694600000000!5m2!1sen!2sza"
-    width="100%"
-    height="250"
-    style="border:0;"
-    allowfullscreen=""
-    loading="lazy"
-    referrerpolicy="no-referrer-when-downgrade">
-  </iframe>
+ <iframe 
+  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3325.286660456846!2d18.444829!3d-33.966192!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1dcc5009f3e1b1c5%3A0x1234567890abcdef!2sRosebank%20Mall!5e0!3m2!1sen!2sza!4v1694600000000!5m2!1sen!2sza" 
+  width="600" 
+  height="450" 
+  style="border:0;" 
+  allowfullscreen="" 
+  loading="lazy" 
+  referrerpolicy="no-referrer-when-downgrade">
+</iframe>
 </div>
 
 
@@ -198,14 +199,40 @@
   <!-- Coupons Shop -->
   <h4>Coupons</h4>
   <ul id="couponShop">
-    <li data-coupon="groceries10" data-cost="50">
+    <li data-coupon="Bread10" data-cost="50">
       10% Off Bread - 50 pts 
       <button class="buy-btn">Buy</button>
     </li>
-    <li data-coupon="groceries25" data-cost="120">
+
+    <li data-coupon="Frozen-Chips25" data-cost="120">
       25% Off Frozen-Chips - 120 pts 
       <button class="buy-btn">Buy</button>
     </li>
+    <li data-coupon="Pizza20" data-cost="100">
+  20% Off Pizza - 100 pts
+  <button class="buy-btn">Buy</button>
+</li>
+
+<li data-coupon="Burger15" data-cost="80">
+  15% Off Burger - 80 pts
+  <button class="buy-btn">Buy</button>
+</li>
+
+<li data-coupon="Coffee10" data-cost="50">
+  10% Off Coffee - 50 pts
+  <button class="buy-btn">Buy</button>
+</li>
+
+<li data-coupon="IceCream30" data-cost="150">
+  30% Off Ice Cream - 150 pts
+  <button class="buy-btn">Buy</button>
+</li>
+
+<li data-coupon="Soda5" data-cost="30">
+  5% Off Soda - 30 pts
+  <button class="buy-btn">Buy</button>
+</li>
+
   </ul>
 </div>
 
@@ -314,7 +341,7 @@
 
       <!-- Parsed PDF Items -->
       <section id="pdfListSection" class="theme-card compact-card mode-section hidden">
-        <h3>📄 Parsed Receipt Items <span class="help-icon" data-help="receiptItems">?</span></h3>
+        <h3>Parsed Receipt Items <span class="help-icon" data-help="receiptItems">?</span></h3>
         <ul id="pdfList">
           <li>No PDF uploaded yet.</li>
         </ul>
@@ -322,7 +349,7 @@
 
       <!-- Charts -->
       <section class="theme-card compact-card charts-section">
-        <h3>📊 Budget Visualizations</h3>
+        <h3>Budget Visualizations</h3>
 
         <div class="chart-container">
           <h4>Income vs. Expenses <span class="help-icon" data-help="incomeExpenseChart">?</span></h4>
@@ -353,36 +380,42 @@
 </main>
 
 
-    <!-- SUMMARY PAGE -->
-  <main id="summary" class="page active">
-    <div class="summary-grid">
-      <div class="large-box">
-        <h3>Interactive daily, weekly, yearly budget graph</h3>
-        <p>Graphical view of your budgeting trends.</p>
-      </div>
-      <div class="small-box">
-        <h3>Spending habits pie chart</h3>
-        <p>Breakdown of your expenses by category.</p>
-      </div>
-      <div class="small-box">
-        <h3>Coupon History</h3>
-        <p>These are your current coupons that you .</p>
-        <h4>Owned Coupons:</h4>
-<ul class="ownedCouponsList"></ul>
-      </div>
+  <!-- SUMMARY PAGE -->
+<main id="summary" class="page active">
+  <div class="summary-grid">
+    <div class="large-box">
+      <h3>Interactive daily, weekly, yearly budget graph</h3>
+      <p>Graphical view of your budgeting trends.</p>
+     
+      <canvas id="trendChart" width="400" height="200"></canvas>
     </div>
 
-    <div class="bottom-row">
-      <div class="large-box">
-        <h3>Detailed Summary of the Month</h3>
-        <p>Complete overview of income, expenses, and savings.</p>
-      </div>
-      <div class="small-box">
-        <h3>Recommendations on what to cut</h3>
-        <p>Suggested areas to optimize spending.</p>
-      </div>
+    <div class="small-box">
+      <h3>Spending habits pie chart</h3>
+      <p>Breakdown of your expenses by category.</p>
+      <!-- Pie chart goes here -->
+      <canvas id="pieChart"></canvas>
     </div>
-  </main>
+
+    <div class="small-box">
+      <h3>Coupon History</h3>
+      <p>These are your current coupons that you.</p>
+      <h4>Owned Coupons:</h4>
+      <ul class="ownedCouponsList"></ul>
+    </div>
+  </div>
+
+  <div class="bottom-row">
+    <div class="large-box">
+      <h3>Detailed Summary of the Month</h3>
+      <ul> <li><strong>Total Income:</strong> R10,000 (Fixed: R6,000, Flexible: R4,000)</li> <li><strong>Total Expenses:</strong> R7,800 (Fixed: R5,000, Flexible: R2,800)</li> <li><strong>Total Savings:</strong> R2,200</li> </ul>
+    </div>
+    <div class="small-box">
+      <h3>Recommendations on what to cut</h3>
+      <ul> <li>⚡ Transport costs up 15% → Consider monthly pass.</li> <li>🍔 Eating out 3x/week → Reduce to 1x/week → Save ~R600.</li> <li>🛍 Shopping exceeded budget by 10% → Look for online deals.</li> </ul>
+    </div>
+  </div>
+</main>
 
   <!-- INVESTING PAGE -->
 <main id="investing" class="page">

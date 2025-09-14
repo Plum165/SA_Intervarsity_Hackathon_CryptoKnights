@@ -60,6 +60,85 @@ const ownedCouponsLists = document.querySelectorAll(".ownedCouponsList");
     }
   });
 };
+
+// ---------- Spending Habits Pie Chart ----------
+const pieCanvas = document.getElementById('pieChart');
+if (pieCanvas) {
+  const totalIncome = 9000; // Example total income, adjust dynamically if needed
+  const subCategories = {
+    Rent: 2500,
+    Food: 1000,
+    Transport: 1000,
+    Utilities: 500,
+    Necessities: 300,
+    Entertainment: 800,
+    Shopping: 1500,
+    Lifestyle: 400,
+    Investment: 1000
+  };
+
+  const pieLabels = Object.keys(subCategories);
+  const pieData = Object.values(subCategories).map(val =>
+    ((val / totalIncome) * 100).toFixed(1)
+  );
+
+  new Chart(pieCanvas.getContext('2d'), {
+    type: 'pie',
+    data: {
+      labels: pieLabels,
+      datasets: [{
+        data: pieData,
+        backgroundColor: [
+          '#ff6384', '#36a2eb', '#ffcd56',
+          '#4bc0c0', '#9966ff', '#ff9f40',
+          '#c9cbcf', '#8e5ea2', '#3cba9f'
+        ]
+      }]
+    },
+    options: {
+      plugins: {
+        legend: {
+          position: 'bottom',
+          labels: { color: '#fff', font: { size: 14 } }
+        },
+        tooltip: {
+          callbacks: {
+            label: (ctx) => `${ctx.label}: ${ctx.raw}%`
+          }
+        }
+      }
+    }
+    
+  });
+  // Trend Chart (dummy demo data)
+  new Chart(document.getElementById('trendChart'), {
+    type: 'line',
+    data: {
+      labels: ['Week 1','Week 2','Week 3','Week 4'],
+      datasets: [{
+        label: 'Expenses',
+        data: [2000, 2200, 1800, 2400],
+        borderColor: '#36a2eb',
+        fill: false,
+        tension: 0.3
+      },{
+        label: 'Income',
+        data: [1250, 3750, 1500, 3500],
+        borderColor: '#4bc0c0',
+        fill: false,
+        tension: 0.3
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: { position: 'bottom' }
+      }
+    }
+  });
+}
+
+
   updateRewardsDisplay();
 
   // ----------- Add Points Button -----------
