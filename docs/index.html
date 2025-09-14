@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<<<<<<< HEAD:demo/index.html
+=======
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.5.141/pdf.min.js"></script>
+
+>>>>>>> 9b16e7f34fce4ad61def786ef4b12670890141df:src/frontend/index.html
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Budget Dynamic Flow</title>
+  
+<link rel="stylesheet" href="css/style_main.css">
+</head>
+<body class="theme-default">
+  <!-- Theme Switcher -->
+  <div class="theme-switcher">
+    <select id="theme-select">
+      <option value="theme-default">Default</option>
+      <option value="theme-red-blue">Red - Blue</option>
+      <option value="theme-spiderman">Spiderman</option>
+      <option value="theme-blood">Blood</option>
+      <option value="theme-sapphire-steel">Sapphire & Steel</option>
+      <option value="theme-emerald-charcoal">Emerald & Charcoal</option>
+      <option value="theme-digital-twilight">Digital Twilight</option>
+      <option value="theme-coral-aqua">Coral & Aqua</option>
+      <option value="theme-electric-citrus">Electric Citrus</option>
+      <option value="theme-artisan-clay">Artisan Clay</option>
+      <option value="theme-forest-canopy">Forest Canopy</option>
+      <option value="theme-ocean-depth">Ocean Depth</option>
+      <option value="theme-desert-sunset">Desert Sunset</option>
+      <option value="theme-monochrome-focus">Monochrome Focus</option>
+      <option value="theme-soft-nordic">Soft Nordic Neutral</option>
+      <option value="theme-peach-retro">Peach Retro Pop</option>
+      <option value="theme-cyberpunk">Cyberpunk Glow</option>
+      <option value="theme-plum-gold">Plum & Gold</option>
+    <!--<option value="theme-custom">Custom</option>-->
+  </select>
+
+  <!-- Custom Theme Picker (hidden initially) -->
+  <div id="custom-theme-picker" style="display:none; margin-top:10px;">
+    <label>Background Color: <input type="color" id="custom-bg"></label>
+    <label>Primary Accent: <input type="color" id="custom-primary"></label>
+    <label>Secondary Accent: <input type="color" id="custom-secondary"></label>
+    <label>Text Color: <input type="color" id="custom-text"></label>
+    <button id="apply-custom-theme">Apply Theme</button>
+  </div>
+  </div>
+
+  <div class="app-container">
+    <header>
+      <div class="logo">BUDGET <span>DYNAMIC FLOW</span></div>
+      <div class="auth-buttons">
+        <button onclick="window.location.href='login.html'">Login</button>
+
+        <button>SignUp</button>
+      </div>
+    </header>
+
+    <nav>
+  <a href="#" data-page="home" class="active">Home</a>
+  <a href="#" data-page="budget">Budget</a>
+  <a href="#" data-page="summary">Summary</a>
+  <a href="#" data-page="investing">Investing</a>
+  <a href="#" data-page="about">About</a>
+</nav>
+
+
+    <!-- HOME PAGE -->
+    <main id="home" class="page active">
+      <section class="left-column">
+        <div class="content-box current-budget">
+          <h3>Current budget plan</h3>
+          <p class="current-budget-text">
+  You haven't created any budgets yet. Start by adding your first budget to track your income and expenses!
+</p>
+<p>Add Your First Budget by click on <strong>Budget</strong></p>
+<p>Tip: Start with your essential expenses like rent or groceries to get a clear view of your finances.</p>
+
+        </div>
+        <div class="content-box quick-summary">
+          <h3>Quick Summary</h3>
+          <p class="quick-summary-text">
+  Your financial overview will appear here once you start adding budgets and tracking expenses. Stay on top of your finances!
+</p>
+<ul>
+  <li>Start by adding a budget for your essential expenses.</li>
+  <li>Track your weekly or monthly spending to see trends.</li>
+  <li>Earn points for completing budgeting tasks!</li>
+</ul>
+
+        </div>
+      </section>
+
+      <section class="right-column">
+        <div class="content-box rewards">
+  <h3>Rewards</h3>
+  <p>Discover your earned rewards and benefits.</p>
+
+  <h4>Owned Themes:</h4>
+  <ul id="ownedThemesList"></ul>
+
+  <h4>Owned Coupons:</h4>
+  <ul class="ownedCouponsList"></ul>
+</div>
+
+       <div class="map">
+ <iframe 
+  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3325.286660456846!2d18.444829!3d-33.966192!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1dcc5009f3e1b1c5%3A0x1234567890abcdef!2sRosebank%20Mall!5e0!3m2!1sen!2sza!4v1694600000000!5m2!1sen!2sza" 
+  width="600" 
+  height="450" 
+  style="border:0;" 
+  allowfullscreen="" 
+  loading="lazy" 
+  referrerpolicy="no-referrer-when-downgrade">
+</iframe>
+</div>
+
+
+        <div class="content-box recommendations">
+  <h3>Rewards Shop</h3>
+  <p>Use your points to unlock new themes & coupons.</p>
+
+ <!-- Rewards Shop -->
+<div class="content-box recommendations">
+  <h3>Rewards Shop</h3>
+  <p>Use your points to unlock new themes & coupons.</p>
+
+  <!-- Show User Points -->
+  <p><strong>Your Points:</strong> <span id="userPoints">0</span></p>
+
+  <!-- Add Points Button to check if point system works -->
+  <!--<button id="addPointsBtn">+100 Points</button>-->
+
+  <!-- Themes Shop -->
+  
+  <h4>Buyable Themes</h4>
+<ul id="themeShop">
+  <li data-theme="theme-blood" data-cost="100">
+    Blood Theme - 100 pts 
+    <button class="buy-btn">Buy</button>
+  </li>
+  <li data-theme="theme-sapphire-steel" data-cost="120">
+    Sapphire & Steel - 120 pts 
+    <button class="buy-btn">Buy</button>
+  </li>
+  <li data-theme="theme-emerald-charcoal" data-cost="110">
+    Emerald & Charcoal - 110 pts 
+    <button class="buy-btn">Buy</button>
+  </li>
+  <li data-theme="theme-digital-twilight" data-cost="130">
+    Digital Twilight - 130 pts 
+    <button class="buy-btn">Buy</button>
+  </li>
+  <li data-theme="theme-coral-aqua" data-cost="130">
+    Coral & Aqua - 130 pts 
+    <button class="buy-btn">Buy</button>
+  </li>
+  <li data-theme="theme-electric-citrus" data-cost="120">
+    Electric Citrus - 120 pts 
+    <button class="buy-btn">Buy</button>
+  </li>
+  <li data-theme="theme-artisan-clay" data-cost="110">
+    Artisan Clay - 110 pts 
+    <button class="buy-btn">Buy</button>
+  </li>
+  <li data-theme="theme-forest-canopy" data-cost="125">
+    Forest Canopy - 125 pts 
+    <button class="buy-btn">Buy</button>
+  </li>
+  <li data-theme="theme-ocean-depth" data-cost="130">
+    Ocean Depth - 130 pts 
+    <button class="buy-btn">Buy</button>
+  </li>
+  <li data-theme="theme-desert-sunset" data-cost="120">
+    Desert Sunset - 120 pts 
+    <button class="buy-btn">Buy</button>
+  </li>
+  <li data-theme="theme-monochrome-focus" data-cost="100">
+    Monochrome Focus - 100 pts 
+    <button class="buy-btn">Buy</button>
+  </li>
+  <li data-theme="theme-soft-nordic" data-cost="90">
+    Soft Nordic Neutral - 90 pts 
+    <button class="buy-btn">Buy</button>
+  </li>
+  <li data-theme="theme-peach-retro" data-cost="95">
+    Peach Retro Pop - 95 pts 
+    <button class="buy-btn">Buy</button>
+  </li>
+  <li data-theme="theme-cyberpunk" data-cost="150">
+    Cyberpunk Glow - 150 pts 
+    <button class="buy-btn">Buy</button>
+  </li>
+  <li data-theme="theme-plum-gold" data-cost="140">
+    Plum & Gold - 140 pts 
+    <button class="buy-btn">Buy</button>
+  </li>
+</ul>
+
+
+  <!-- Coupons Shop -->
+  <h4>Coupons</h4>
+  <ul id="couponShop">
+    <li data-coupon="Bread10" data-cost="50">
+      10% Off Bread - 50 pts 
+      <button class="buy-btn">Buy</button>
+    </li>
+
+    <li data-coupon="Frozen-Chips25" data-cost="120">
+      25% Off Frozen-Chips - 120 pts 
+      <button class="buy-btn">Buy</button>
+    </li>
+    <li data-coupon="Pizza20" data-cost="100">
+  20% Off Pizza - 100 pts
+  <button class="buy-btn">Buy</button>
+</li>
+
+<li data-coupon="Burger15" data-cost="80">
+  15% Off Burger - 80 pts
+  <button class="buy-btn">Buy</button>
+</li>
+
+<li data-coupon="Coffee10" data-cost="50">
+  10% Off Coffee - 50 pts
+  <button class="buy-btn">Buy</button>
+</li>
+
+<li data-coupon="IceCream30" data-cost="150">
+  30% Off Ice Cream - 150 pts
+  <button class="buy-btn">Buy</button>
+</li>
+
+<li data-coupon="Soda5" data-cost="30">
+  5% Off Soda - 30 pts
+  <button class="buy-btn">Buy</button>
+</li>
+
+  </ul>
+</div>
+
+
+
+      </section>
+    </main>
+
+<main id="budget" class="page">
+
+  <!-- Points Badge at Top -->
+  <section class="user-points theme-card points-top-card">
+    <h3>🏆 Your Points</h3>
+    <div id="pointsDisplay" class="points-badge">0</div>
+  </section>
+
+  <div class="budget-flex-container">
+
+    <!-- Left Column -->
+    <div class="budget-left">
+
+      <!-- Create a Budget -->
+      <section class="new-budget theme-card compact-card">
+        <h3>Create a Budget</h3>
+
+        <!-- Mode Selector -->
+        <label for="budgetMode" class="form-label">Budget Mode:</label>
+        <select id="budgetMode" class="form-input">
+          <option value="groceries">Groceries Mode</option>
+          <option value="general">General Budget Mode</option>
+        </select>
+
+        <!-- Groceries: PDF + Budget -->
+        <div id="groceriesInputs" class="mode-section">
+          <label for="pdfInput" class="form-label">Upload Receipt (PDF):</label>
+          <input type="file" id="pdfInput" accept="application/pdf" class="form-input">
+
+          <label for="groceriesBudget" class="form-label">Total Grocery Budget (R):</label>
+          <input type="number" id="groceriesBudget" placeholder="e.g., 450" class="form-input">
+        </div>
+
+        <!-- General & Groceries: Form -->
+        <form id="budgetForm">
+          <label for="budgetName" class="form-label">Name:</label>
+          <input type="text" id="budgetName" placeholder="Rent, Electricity, etc." class="form-input" required>
+
+          <div class="badges-row">
+            <div>
+              <label class="form-label">Type:</label>
+              <select id="incomeExpense" class="form-input">
+                <option value="expense">Expense</option>
+                <option value="income">Income</option>
+              </select>
+            </div>
+            <div>
+              <label class="form-label">Category:</label>
+              <select id="fixedFlexible" class="form-input">
+                <option value="fixed">Fixed</option>
+                <option value="flexible">Flexible</option>
+              </select>
+            </div>
+          </div>
+
+          <label for="budgetAmount" class="form-label">Amount (ZAR):</label>
+          <input type="number" id="budgetAmount" placeholder="Enter amount" class="form-input" required>
+
+          <div class="form-buttons">
+            <button type="reset" class="theme-btn secondary">Cancel</button>
+            <button type="submit" class="theme-btn primary">Add Budget</button>
+          </div>
+        </form>
+
+        <div class="action-buttons">
+          <button id="checkBudgetBtn" class="theme-btn success">✅ Check Budget</button>
+          <button id="clearBudgetBtn" class="theme-btn danger">🗑 Clear All Budgets</button>
+        </div>
+      </section>
+
+      <!-- Recommended Budget (General Mode only) -->
+      <section id="generalModeRecommendations" class="recommended-budget theme-card compact-card mode-section hidden">
+        <h3>💡 Recommended Budget Split <span class="help-icon" data-help="recommendedSplit">?</span></h3>
+        <div id="recommendedBudgetContent">
+          <p>This section shows the recommended 60/20/20 split for Needs, Other, and Savings, and how your current budget aligns.</p>
+        </div>
+      </section>
+
+      <!-- User Budgets -->
+      <section class="custom-budget theme-card compact-card">
+        <h3>📝 Your Budgets</h3>
+        <div id="customBudget">
+          <p>No budgets added yet.</p>
+        </div>
+      </section>
+
+      <!-- Candy/Snack Analysis (Groceries Mode only) -->
+      <section id="candyAnalysisSection" class="groceries-analysis theme-card compact-card mode-section hidden">
+        <h3>🍬 Candy & Snack Analysis <span class="help-icon" data-help="candyAnalysis">?</span></h3>
+        <div id="candySummary">
+          <p>No analysis yet. Upload a receipt in Groceries Mode.</p>
+        </div>
+      </section>
+    </div>
+
+    <!-- Right Column -->
+    <div class="budget-right">
+
+      <!-- Parsed PDF Items -->
+      <section id="pdfListSection" class="theme-card compact-card mode-section hidden">
+        <h3>Parsed Receipt Items <span class="help-icon" data-help="receiptItems">?</span></h3>
+        <ul id="pdfList">
+          <li>No PDF uploaded yet.</li>
+        </ul>
+      </section>
+
+      <!-- Charts -->
+      <section class="theme-card compact-card charts-section">
+        <h3>Budget Visualizations</h3>
+
+        <div class="chart-container">
+          <h4>Income vs. Expenses <span class="help-icon" data-help="incomeExpenseChart">?</span></h4>
+          <canvas id="incomeExpenseChart"></canvas>
+        </div>
+
+        <div id="budgetSplitChartContainer" class="chart-container mode-section hidden">
+          <h4>Needs (60%) vs. Other (20%) vs. Savings (20%) <span class="help-icon" data-help="needsOtherSavingsChart">?</span></h4>
+          <canvas id="budgetSplitChart"></canvas>
+        </div>
+
+        <div class="chart-container">
+          <h4>Fixed vs. Flexible Costs <span class="help-icon" data-help="fixedFlexibleChart">?</span></h4>
+          <canvas id="fixedFlexibleChart"></canvas>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <!-- Help Modal -->
+  <div id="helpModal" class="modal">
+    <div class="modal-content">
+      <span class="close-button">&times;</span>
+      <h3 id="modalTitle"></h3>
+      <p id="modalBody"></p>
+    </div>
+  </div>
+</main>
+
+
+  <!-- SUMMARY PAGE -->
+<main id="summary" class="page active">
+  <div class="summary-grid">
+    <div class="large-box">
+      <h3>Interactive daily, weekly, yearly budget graph</h3>
+      <p>Graphical view of your budgeting trends.</p>
+     
+      <canvas id="trendChart" width="400" height="200"></canvas>
+    </div>
+
+    <div class="small-box">
+      <h3>Spending habits pie chart</h3>
+      <p>Breakdown of your expenses by category.</p>
+      <!-- Pie chart goes here -->
+      <canvas id="pieChart"></canvas>
+    </div>
+
+    <div class="small-box">
+      <h3>Coupon History</h3>
+      <p>These are your current coupons that you.</p>
+      <h4>Owned Coupons:</h4>
+      <ul class="ownedCouponsList"></ul>
+    </div>
+  </div>
+
+  <div class="bottom-row">
+    <div class="large-box">
+      <h3>Detailed Summary of the Month</h3>
+      <ul> <li><strong>Total Income:</strong> R10,000 (Fixed: R6,000, Flexible: R4,000)</li> <li><strong>Total Expenses:</strong> R7,800 (Fixed: R5,000, Flexible: R2,800)</li> <li><strong>Total Savings:</strong> R2,200</li> </ul>
+    </div>
+    <div class="small-box">
+      <h3>Recommendations on what to cut</h3>
+      <ul> <li>⚡ Transport costs up 15% → Consider monthly pass.</li> <li>🍔 Eating out 3x/week → Reduce to 1x/week → Save ~R600.</li> <li>🛍 Shopping exceeded budget by 10% → Look for online deals.</li> </ul>
+    </div>
+  </div>
+</main>
+
+  <!-- INVESTING PAGE -->
+<main id="investing" class="page">
+  <div class="investing-grid">
+    <!-- Left Column: How to start -->
+    <div class="content-box how-to-start">
+  <h3>How to Start Investing</h3>
+  <p>Learn the basics of investing and follow these steps to begin safely:</p>
+  
+  <ol class="investment-steps">
+    <li><strong>Set Financial Goals:</strong> Define short-term and long-term goals.</li>
+    <li><strong>Determine Budget:</strong> Decide how much you can invest safely.</li>
+    <li><strong>Learn Investment Types:</strong> Explore stocks, bonds, ETFs, and funds.</li>
+    <li><strong>Open an Account:</strong> Choose a brokerage or investment app.</li>
+    <li><strong>Start Small:</strong> Make small, diversified investments.</li>
+    <li><strong>Monitor & Adjust:</strong> Track your portfolio and rebalance as needed.</li>
+  </ol>
+
+  <div class="investment-tips">
+    <h4>Quick Tips:</h4>
+    <ul>
+      <li>Build an emergency fund before investing.</li>
+      <li>Diversify to reduce risk.</li>
+      <li>Invest only money you can afford to lock away.</li>
+      <li>Think long-term; avoid emotional decisions.</li>
+      <li>Understand risk vs reward.</li>
+    </ul>
+  </div>
+
+  <button class="learn-more-btn">Learn More</button>
+</div>
+
+
+    <!-- Middle Column: Stocks Graphs & Portfolio -->
+    <div class="middle-column">
+      <div class="content-box stocks-graph">
+  <h3>FNB Stock Performance</h3>
+  <p>Visual representation of FNB's recent stock performance.</p>
+ <iframe
+  src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:AAPL&interval=D&hidesidetoolbar=1&symboledit=1&saveimage=1&toolbarbg=f1f3f6&studies=[]&theme=light&style=1"
+  width="100%" height="400" frameborder="0" allowtransparency="true" scrolling="no">
+</iframe></div>
+
+
+      <div class="content-box portfolio-analysis">
+  <h3>Portfolio Analysis</h3>
+  <p>Graphs showing available funds and whether it's sufficient to start investing.</p>
+
+  <div class="portfolio-summary">
+    <p><strong>Available Cash:</strong> ZAR 5,000</p>
+    <p><strong>FNB Investment:</strong> ZAR 2,000</p>
+    <p><strong>Remaining Cash:</strong> ZAR 3,000</p>
+  </div>
+
+<canvas id="portfolioChart" width="500" height="300"></canvas>
+
+  <button class="learn-more-btn">View Detailed Analysis</button>
+</div>
+
+    </div>
+
+    <!-- Right Column: Recommended Companies -->
+<div class="right-column">
+  <div class="content-box recommended-companies">
+    <h3>Recommended Companies to Invest In</h3>
+    <p>Personalized investment suggestions based on your profile.</p>
+
+    <ul class="company-list">
+      <li>
+        <img src="../../assets/images/FNB.png" alt="FNB Logo">
+
+        <div class="company-info">
+          <h4>FNB</h4>
+          <p>Sector: Banking & Finance</p>
+          <p>Risk: Low | Estimated ROI: 6-8%</p>
+        </div>
+      </li>
+      <li>
+        <img src="../../assets/images/Sasol.jpg" alt="Sasol Logo">
+
+        <div class="company-info">
+          <h4>Sasol</h4>
+          <p>Sector: Energy & Chemicals</p>
+          <p>Risk: Medium | Estimated ROI: 8-12%</p>
+        </div>
+      </li>
+      <li>
+        <img src="../../assets/images/Shoprite.jpeg" alt="Shoprite Logo">
+        <div class="company-info">
+          <h4>Shoprite</h4>
+          <p>Sector: Retail</p>
+          <p>Risk: Low | Estimated ROI: 5-7%</p>
+        </div>
+      </li>
+      <li>
+        <img src="../../assets/images/Naspers.png" alt="Naspers Logo">
+        <div class="company-info">
+          <h4>Naspers</h4>
+          <p>Sector: Media & Technology</p>
+          <p>Risk: Medium | Estimated ROI: 7-10%</p>
+        </div>
+      </li>
+    </ul>
+
+    <button class="explore-btn">Explore More Companies</button>
+  </div>
+</div>
+
+  </div>
+</main>
+
+
+<!-- ABOUT PAGE -->
+<main id="about" class="page">
+  <div class="about-container">
+    <!-- Description / Mission -->
+    <div class="about-description">
+      <h3>About Budget Wise</h3>
+      </p><strong>Welcome to our website!</strong></p>
+</p>Living in Cape Town has become more expensive day by day. From higher housing costs, groceries, and electricity bills, getting lost is easy. Our vision is to enable you to be in control of your finances by breaking down budgeting to make it relevant and even fun.</p>
+</p><strong>This is what we can do for you:</strong></p>
+</p><strong>Budget Smarter</strong>: Track your income and expenditure, know where your money is being spent, and get recommended budgeting breakdowns based on your lifestyle.</p>
+</p><strong>Save Money While You Shop:</strong> Our AI technology captures prices at stores, finds coupons, and identifies bundle prices to enable you to spend less without sacrificing quality.</p>
+</p><strong>Engage & Be Rewarded:</strong> Finish tasks, stay within budgets, and implement saving tips to earn points. Redeem points for custom themes or shopping vouchers, which makes saving engaging and fun.</p>
+</p><strong>Invest for the Future:</strong>Receive investment tips for starters and overall investment advice to maximize savings and gain financial security.</p>
+</p>Our system is adaptable and convenient. You can handle budgets, track spending, and make sounder financial choices, all in one place, whether you are a student, a professional, or someone juggling a family.</p>
+
+    </div>
+
+    <!-- Team Members -->
+    <div class="team-members">
+      <h3>Meet the Team</h3>
+      <ul>
+        <li>Moegamat Samsodien</li>
+        <li>Misha Dick</li>
+        <li>Entisaar Elfadl</li>
+      </ul>
+    </div>
+
+    <!-- Optional Icons / Highlights -->
+    <div class="about-highlights">
+      <div class="highlight">
+        <h4>Budgeting</h4>
+        <p>Track income vs expenses and get recommended budgets.</p>
+      </div>
+      <div class="highlight">
+        <h4>Saving Tips</h4>
+        <p>Get personalized advice to improve financial habits.</p>
+      </div>
+      <div class="highlight">
+        <h4>Investing</h4>
+        <p>Beginner-friendly investment recommendations and guidance.</p>
+      </div>
+      <div class="highlight">
+        <h4>Rewards</h4>
+        <p>Earn points and redeem coupons for healthy financial habits.</p>
+      </div>
+    </div>
+  </div>
+</main>
+
+
+
+</div>
+  
+
+  <script src="js/theme.js"></script>
+<script src="js/budget.js"></script>
+
+
+</body>
+</html>
