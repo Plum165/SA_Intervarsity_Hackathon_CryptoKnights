@@ -168,31 +168,347 @@ nav a.active {
   opacity: 0.7;
 }
 
-/* ---------------- Budget Page Layout ---------------- */
-main.budget-page {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+/* General Layout */
+  .budget-flex-container {
+  display: flex;
   gap: 20px;
-  padding: 20px;
-}
-
-.new-budget, .recommended-budget, .custom-budget {
-  background: rgba(255,255,255,0.05);
+  flex-wrap: wrap;
+  margin-top: 20px;
+  background-color: var(--box-bg-color, rgba(20,0,40,0.85));
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  border: 1px solid var(--border-color, #3b0066);
 }
 
-.new-budget form {
+.budget-left, .budget-right {
+  flex: 1;
+  min-width: 300px;
+  background-color: var(--box-bg-color, rgba(20,0,40,0.85));
+  border: 1px solid var(--border-color, #3b0066);
+  border-radius: 8px;
+  padding: 15px;
+}
+
+
+/* Theme Cards */
+.theme-card {
+  background-color: var(--card-background-color, #2a2a2a); /* Darker card background */
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  color: var(--text-color, #e0e0e0); /* Light text for dark background */
+}
+
+.compact-card {
+  padding: 15px;
+  font-size: 0.95em;
+}
+
+/* Points Badge */
+.points-top-card {
+  text-align: center;
+  margin-bottom: 25px;
+  background: linear-gradient(45deg, var(--primary-color, #4caf50), #66bb6a); /* Gradient background */
+  color: #fff;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+.points-top-card h3 {
+  color: #fff;
+  margin-bottom: 10px;
+  font-size: 1.2em;
+}
+
+.points-badge {
+  background: rgba(0, 0, 0, 0.2); /* Slightly transparent background for badge */
+  color: #fff;
+  font-weight: bold;
+  padding: 12px 30px;
+  border-radius: 30px;
+  font-size: 1.6em;
+  display: inline-block;
+  margin-top: 5px;
+  min-width: 80px; /* Ensure badge has a decent size */
+}
+
+/* Forms and Inputs */
+.form-label {
+  display: block;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: var(--secondary-text-color, #bbbbbb);
+}
+
+.form-input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--border-color, #444);
+  border-radius: 8px;
+  background-color: var(--input-background-color, #3a3a3a);
+  color: var(--text-color, #e0e0e0);
+  font-size: 1em;
+  box-sizing: border-box; /* Include padding in width calculation */
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--primary-color, #4caf50);
+  box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.3);
+}
+
+select.form-input {
+  -webkit-appearance: none; /* Remove default arrow on select */
+  -moz-appearance: none;
+  appearance: none;
+  background-image: url('data:image/svg+xml;utf8,<svg fill="%23e0e0e0" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  padding-right: 30px;
+}
+
+
+.badges-row {
+  display: flex;
+  gap: 15px;
+  margin: 15px 0;
+}
+
+.badges-row div {
+  flex: 1;
   display: flex;
   flex-direction: column;
 }
 
-.new-budget label { margin: 10px 0 5px; }
-.new-budget input, .new-budget select { padding: 8px; border-radius: 5px; border: 1px solid #aaa; margin-bottom: 10px; }
+.badge-select {
+  border-radius: 8px;
+  background-color: var(--input-background-color, #3a3a3a);
+  padding: 8px 10px;
+  border: 1px solid var(--border-color, #444);
+  color: var(--text-color, #e0e0e0);
+}
 
-.form-buttons { display: flex; justify-content: space-between; }
-.form-buttons button { padding: 10px 15px; border: none; border-radius: 5px; cursor: pointer; }
+/* Buttons */
+.form-buttons, .action-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+  justify-content: flex-end; /* Align buttons to the right */
+}
+
+.action-buttons {
+  justify-content: space-between;
+  margin-top: 25px;
+}
+
+.theme-btn {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  flex-grow: 1; /* Allow buttons to take available space */
+  max-width: fit-content;
+}
+
+.theme-btn.primary {
+  background-color: var(--primary-color, #4caf50);
+  color: #fff;
+}
+.theme-btn.primary:hover { background-color: #66bb6a; transform: translateY(-2px); }
+
+.theme-btn.secondary {
+  background-color: var(--secondary-color, #607d8b);
+  color: #fff;
+}
+.theme-btn.secondary:hover { background-color: #78909c; transform: translateY(-2px); }
+
+.theme-btn.success {
+  background-color: #28a745; /* Green */
+  color: #fff;
+}
+.theme-btn.success:hover { background-color: #218838; transform: translateY(-2px); }
+
+.theme-btn.danger {
+  background-color: #dc3545; /* Red */
+  color: #fff;
+}
+.theme-btn.danger:hover { background-color: #c82333; transform: translateY(-2px); }
+
+/* PDF List Styling */
+#pdfList {
+  list-style: none;
+  padding-left: 0;
+  max-height: 250px; /* Fixed height with scroll */
+  overflow-y: auto;
+  border: 1px solid var(--border-color, #444);
+  border-radius: 8px;
+  padding: 10px;
+  background-color: var(--input-background-color, #3a3a3a);
+}
+
+#pdfList li {
+  background: var(--card-background-color, #2a2a2a);
+  margin: 8px 0;
+  padding: 10px 12px;
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-left: 4px solid var(--primary-color, #4caf50); /* Accent border */
+}
+
+/* Charts Section */
+.charts-section {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.chart-container {
+  background-color: var(--input-background-color, #3a3a3a);
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.chart-container h4 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  color: var(--text-color, #e0e0e0);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.budget-chart {
+  max-width: 100%;
+  height: 250px; /* Fixed height for consistency */
+}
+
+/* Help Icon */
+.help-icon {
+  width: 18px;
+  height: 18px;
+  background-color: var(--secondary-color, #607d8b);
+  color: #fff;
+  border-radius: 50%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.8em;
+  font-weight: bold;
+  cursor: help;
+  transition: background-color 0.2s ease;
+  user-select: none;
+}
+.help-icon:hover {
+  background-color: var(--primary-color, #4caf50);
+}
+
+/* Modal for Help */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1000; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0,0,0,0.6); /* Black w/ opacity */
+  backdrop-filter: blur(5px); /* Frosted glass effect */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: var(--card-background-color, #2a2a2a);
+  margin: auto;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 5px 25px rgba(0,0,0,0.5);
+  position: relative;
+  max-width: 500px;
+  width: 90%;
+  transform: translateY(-50px); /* Start slightly above center */
+  opacity: 0;
+  animation: modalFadeIn 0.3s forwards ease-out;
+}
+
+@keyframes modalFadeIn {
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.close-button {
+  color: var(--secondary-text-color, #aaa);
+  position: absolute;
+  top: 15px;
+  right: 25px;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.close-button:hover,
+.close-button:focus {
+  color: var(--primary-color, #4caf50);
+  text-decoration: none;
+}
+
+#modalTitle {
+  color: var(--primary-color, #4caf50);
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-size: 1.5em;
+}
+
+#modalBody {
+  line-height: 1.6;
+  color: var(--text-color, #e0e0e0);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .budget-flex-container {
+    flex-direction: column;
+  }
+  .form-buttons, .action-buttons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .theme-btn {
+    max-width: 100%;
+  }
+  .badges-row {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+.modal {
+  display: none; /* start hidden */
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 1000;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 20px;
+  max-width: 500px;
+  margin: 100px auto;
+  border-radius: 10px;
+}
 
 /* ---------------- Summary Page Layout ---------------- */
 #summary {

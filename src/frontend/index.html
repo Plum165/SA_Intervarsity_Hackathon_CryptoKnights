@@ -1,11 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<<<<<<< HEAD:demo/index.html
+=======
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.5.141/pdf.min.js"></script>
+
+>>>>>>> 9b16e7f34fce4ad61def786ef4b12670890141df:src/frontend/index.html
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Budget Dynamic Flow</title>
-  <link rel="stylesheet" href="style_main.css">
+  
+<link rel="stylesheet" href="css/style_main.css">
 </head>
 <body class="theme-default">
   <!-- Theme Switcher -->
@@ -46,7 +52,8 @@
     <header>
       <div class="logo">BUDGET <span>DYNAMIC FLOW</span></div>
       <div class="auth-buttons">
-        <button>Login</button>
+        <button onclick="window.location.href='login.html'">Login</button>
+
         <button>SignUp</button>
       </div>
     </header>
@@ -95,19 +102,19 @@
   <ul id="ownedThemesList"></ul>
 
   <h4>Owned Coupons:</h4>
-  <ul id="ownedCouponsList"></ul>
+  <ul class="ownedCouponsList"></ul>
 </div>
 
        <div class="map">
-  <iframe
-    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3325.286660456846!2d18.444829!3d-33.966192!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1dcc5009f3e1b1c5%3A0x1234567890abcdef!2sRosebank%20Mall!5e0!3m2!1sen!2sza!4v1694600000000!5m2!1sen!2sza"
-    width="100%"
-    height="250"
-    style="border:0;"
-    allowfullscreen=""
-    loading="lazy"
-    referrerpolicy="no-referrer-when-downgrade">
-  </iframe>
+ <iframe 
+  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3325.286660456846!2d18.444829!3d-33.966192!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1dcc5009f3e1b1c5%3A0x1234567890abcdef!2sRosebank%20Mall!5e0!3m2!1sen!2sza!4v1694600000000!5m2!1sen!2sza" 
+  width="600" 
+  height="450" 
+  style="border:0;" 
+  allowfullscreen="" 
+  loading="lazy" 
+  referrerpolicy="no-referrer-when-downgrade">
+</iframe>
 </div>
 
 
@@ -196,14 +203,40 @@
   <!-- Coupons Shop -->
   <h4>Coupons</h4>
   <ul id="couponShop">
-    <li data-coupon="groceries10" data-cost="50">
+    <li data-coupon="Bread10" data-cost="50">
       10% Off Bread - 50 pts 
       <button class="buy-btn">Buy</button>
     </li>
-    <li data-coupon="groceries25" data-cost="120">
+
+    <li data-coupon="Frozen-Chips25" data-cost="120">
       25% Off Frozen-Chips - 120 pts 
       <button class="buy-btn">Buy</button>
     </li>
+    <li data-coupon="Pizza20" data-cost="100">
+  20% Off Pizza - 100 pts
+  <button class="buy-btn">Buy</button>
+</li>
+
+<li data-coupon="Burger15" data-cost="80">
+  15% Off Burger - 80 pts
+  <button class="buy-btn">Buy</button>
+</li>
+
+<li data-coupon="Coffee10" data-cost="50">
+  10% Off Coffee - 50 pts
+  <button class="buy-btn">Buy</button>
+</li>
+
+<li data-coupon="IceCream30" data-cost="150">
+  30% Off Ice Cream - 150 pts
+  <button class="buy-btn">Buy</button>
+</li>
+
+<li data-coupon="Soda5" data-cost="30">
+  5% Off Soda - 30 pts
+  <button class="buy-btn">Buy</button>
+</li>
+
   </ul>
 </div>
 
@@ -212,79 +245,181 @@
       </section>
     </main>
 
-    <!-- BUDGET PAGE -->
-    <main id="budget" class="page">
-      <section class="new-budget">
-        <h3>New Budget</h3>
-        <form>
-          <label for="incomeExpense">Income/Expense</label>
-          <select id="incomeExpense">
-            <option value="income">Income</option>
-            <option value="expense">Expense</option>
-          </select>
+<main id="budget" class="page">
 
-          <label for="fixedFlexible">Fixed/Flexible</label>
-          <select id="fixedFlexible">
-            <option value="fixed">Fixed</option>
-            <option value="flexible">Flexible</option>
-          </select>
+  <!-- Points Badge at Top -->
+  <section class="user-points theme-card points-top-card">
+    <h3>🏆 Your Points</h3>
+    <div id="pointsDisplay" class="points-badge">0</div>
+  </section>
 
-          <label for="budgetName">Name</label>
-          <input type="text" id="budgetName" placeholder="e.g. Rent, Groceries">
+  <div class="budget-flex-container">
 
-          <label for="budgetAmount">Amount</label>
-          <input type="number" id="budgetAmount" placeholder="Enter amount">
+    <!-- Left Column -->
+    <div class="budget-left">
+
+      <!-- Create a Budget -->
+      <section class="new-budget theme-card compact-card">
+        <h3>Create a Budget</h3>
+
+        <!-- Mode Selector -->
+        <label for="budgetMode" class="form-label">Budget Mode:</label>
+        <select id="budgetMode" class="form-input">
+          <option value="groceries">Groceries Mode</option>
+          <option value="general">General Budget Mode</option>
+        </select>
+
+        <!-- Groceries: PDF + Budget -->
+        <div id="groceriesInputs" class="mode-section">
+          <label for="pdfInput" class="form-label">Upload Receipt (PDF):</label>
+          <input type="file" id="pdfInput" accept="application/pdf" class="form-input">
+
+          <label for="groceriesBudget" class="form-label">Total Grocery Budget (R):</label>
+          <input type="number" id="groceriesBudget" placeholder="e.g., 450" class="form-input">
+        </div>
+
+        <!-- General & Groceries: Form -->
+        <form id="budgetForm">
+          <label for="budgetName" class="form-label">Name:</label>
+          <input type="text" id="budgetName" placeholder="Rent, Electricity, etc." class="form-input" required>
+
+          <div class="badges-row">
+            <div>
+              <label class="form-label">Type:</label>
+              <select id="incomeExpense" class="form-input">
+                <option value="expense">Expense</option>
+                <option value="income">Income</option>
+              </select>
+            </div>
+            <div>
+              <label class="form-label">Category:</label>
+              <select id="fixedFlexible" class="form-input">
+                <option value="fixed">Fixed</option>
+                <option value="flexible">Flexible</option>
+              </select>
+            </div>
+          </div>
+
+          <label for="budgetAmount" class="form-label">Amount (ZAR):</label>
+          <input type="number" id="budgetAmount" placeholder="Enter amount" class="form-input" required>
 
           <div class="form-buttons">
-            <button type="reset">Cancel</button>
-            <button type="submit">Submit</button>
+            <button type="reset" class="theme-btn secondary">Cancel</button>
+            <button type="submit" class="theme-btn primary">Add Budget</button>
           </div>
         </form>
-      </section>
 
-      <section class="recommended-budget">
-        <h3>Recommended Budget</h3>
-        <div class="placeholder-box">
-          <p>System-generated budget suggestions will appear here.</p>
+        <div class="action-buttons">
+          <button id="checkBudgetBtn" class="theme-btn success">✅ Check Budget</button>
+          <button id="clearBudgetBtn" class="theme-btn danger">🗑 Clear All Budgets</button>
         </div>
       </section>
 
-      <section class="custom-budget">
-        <h3>Custom Budget</h3>
-        <div class="placeholder-box">
-          <p>Your custom budgets will appear here.</p>
+      <!-- Recommended Budget (General Mode only) -->
+      <section id="generalModeRecommendations" class="recommended-budget theme-card compact-card mode-section hidden">
+        <h3>💡 Recommended Budget Split <span class="help-icon" data-help="recommendedSplit">?</span></h3>
+        <div id="recommendedBudgetContent">
+          <p>This section shows the recommended 60/20/20 split for Needs, Other, and Savings, and how your current budget aligns.</p>
         </div>
       </section>
-    </main>
 
-    <!-- SUMMARY PAGE -->
-  <main id="summary" class="page active">
-    <div class="summary-grid">
-      <div class="large-box">
-        <h3>Interactive daily, weekly, yearly budget graph</h3>
-        <p>Graphical view of your budgeting trends.</p>
-      </div>
-      <div class="small-box">
-        <h3>Spending habits pie chart</h3>
-        <p>Breakdown of your expenses by category.</p>
-      </div>
-      <div class="small-box">
-        <h3>Coupon History</h3>
-        <p>Track your redeemed coupons and savings.</p>
-      </div>
+      <!-- User Budgets -->
+      <section class="custom-budget theme-card compact-card">
+        <h3>📝 Your Budgets</h3>
+        <div id="customBudget">
+          <p>No budgets added yet.</p>
+        </div>
+      </section>
+
+      <!-- Candy/Snack Analysis (Groceries Mode only) -->
+      <section id="candyAnalysisSection" class="groceries-analysis theme-card compact-card mode-section hidden">
+        <h3>🍬 Candy & Snack Analysis <span class="help-icon" data-help="candyAnalysis">?</span></h3>
+        <div id="candySummary">
+          <p>No analysis yet. Upload a receipt in Groceries Mode.</p>
+        </div>
+      </section>
     </div>
 
-    <div class="bottom-row">
-      <div class="large-box">
-        <h3>Detailed Summary of the Month</h3>
-        <p>Complete overview of income, expenses, and savings.</p>
-      </div>
-      <div class="small-box">
-        <h3>Recommendations on what to cut</h3>
-        <p>Suggested areas to optimize spending.</p>
-      </div>
+    <!-- Right Column -->
+    <div class="budget-right">
+
+      <!-- Parsed PDF Items -->
+      <section id="pdfListSection" class="theme-card compact-card mode-section hidden">
+        <h3>Parsed Receipt Items <span class="help-icon" data-help="receiptItems">?</span></h3>
+        <ul id="pdfList">
+          <li>No PDF uploaded yet.</li>
+        </ul>
+      </section>
+
+      <!-- Charts -->
+      <section class="theme-card compact-card charts-section">
+        <h3>Budget Visualizations</h3>
+
+        <div class="chart-container">
+          <h4>Income vs. Expenses <span class="help-icon" data-help="incomeExpenseChart">?</span></h4>
+          <canvas id="incomeExpenseChart"></canvas>
+        </div>
+
+        <div id="budgetSplitChartContainer" class="chart-container mode-section hidden">
+          <h4>Needs (60%) vs. Other (20%) vs. Savings (20%) <span class="help-icon" data-help="needsOtherSavingsChart">?</span></h4>
+          <canvas id="budgetSplitChart"></canvas>
+        </div>
+
+        <div class="chart-container">
+          <h4>Fixed vs. Flexible Costs <span class="help-icon" data-help="fixedFlexibleChart">?</span></h4>
+          <canvas id="fixedFlexibleChart"></canvas>
+        </div>
+      </section>
     </div>
-  </main>
+  </div>
+
+  <!-- Help Modal -->
+  <div id="helpModal" class="modal">
+    <div class="modal-content">
+      <span class="close-button">&times;</span>
+      <h3 id="modalTitle"></h3>
+      <p id="modalBody"></p>
+    </div>
+  </div>
+</main>
+
+
+  <!-- SUMMARY PAGE -->
+<main id="summary" class="page active">
+  <div class="summary-grid">
+    <div class="large-box">
+      <h3>Interactive daily, weekly, yearly budget graph</h3>
+      <p>Graphical view of your budgeting trends.</p>
+     
+      <canvas id="trendChart" width="400" height="200"></canvas>
+    </div>
+
+    <div class="small-box">
+      <h3>Spending habits pie chart</h3>
+      <p>Breakdown of your expenses by category.</p>
+      <!-- Pie chart goes here -->
+      <canvas id="pieChart"></canvas>
+    </div>
+
+    <div class="small-box">
+      <h3>Coupon History</h3>
+      <p>These are your current coupons that you.</p>
+      <h4>Owned Coupons:</h4>
+      <ul class="ownedCouponsList"></ul>
+    </div>
+  </div>
+
+  <div class="bottom-row">
+    <div class="large-box">
+      <h3>Detailed Summary of the Month</h3>
+      <ul> <li><strong>Total Income:</strong> R10,000 (Fixed: R6,000, Flexible: R4,000)</li> <li><strong>Total Expenses:</strong> R7,800 (Fixed: R5,000, Flexible: R2,800)</li> <li><strong>Total Savings:</strong> R2,200</li> </ul>
+    </div>
+    <div class="small-box">
+      <h3>Recommendations on what to cut</h3>
+      <ul> <li>⚡ Transport costs up 15% → Consider monthly pass.</li> <li>🍔 Eating out 3x/week → Reduce to 1x/week → Save ~R600.</li> <li>🛍 Shopping exceeded budget by 10% → Look for online deals.</li> </ul>
+    </div>
+  </div>
+</main>
 
   <!-- INVESTING PAGE -->
 <main id="investing" class="page">
@@ -354,7 +489,8 @@
 
     <ul class="company-list">
       <li>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/3/30/FNB_SA_logo.svg" alt="FNB Logo">
+        <img src="../../assets/images/FNB.png" alt="FNB Logo">
+
         <div class="company-info">
           <h4>FNB</h4>
           <p>Sector: Banking & Finance</p>
@@ -362,7 +498,8 @@
         </div>
       </li>
       <li>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/7/7a/Sasol_Logo.svg" alt="Sasol Logo">
+        <img src="../../assets/images/Sasol.jpg" alt="Sasol Logo">
+
         <div class="company-info">
           <h4>Sasol</h4>
           <p>Sector: Energy & Chemicals</p>
@@ -370,7 +507,7 @@
         </div>
       </li>
       <li>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/8/8d/Shoprite_Logo.svg" alt="Shoprite Logo">
+        <img src="../../assets/images/Shoprite.jpeg" alt="Shoprite Logo">
         <div class="company-info">
           <h4>Shoprite</h4>
           <p>Sector: Retail</p>
@@ -378,7 +515,7 @@
         </div>
       </li>
       <li>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Naspers_logo.svg" alt="Naspers Logo">
+        <img src="../../assets/images/Naspers.png" alt="Naspers Logo">
         <div class="company-info">
           <h4>Naspers</h4>
           <p>Sector: Media & Technology</p>
@@ -449,6 +586,9 @@
 </div>
   
 
-  <script src="theme.js"></script>
+  <script src="js/theme.js"></script>
+<script src="js/budget.js"></script>
+
+
 </body>
 </html>
