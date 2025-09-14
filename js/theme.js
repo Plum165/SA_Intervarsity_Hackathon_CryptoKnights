@@ -285,7 +285,7 @@ if (pieCanvas) {
   });
   if (pages.length > 0) pages[0].classList.add('active');
 
-<<<<<<< HEAD:demo/theme.js
+
   // ----------- Portfolio / Stocks Graph -----------
 const ctx = document.getElementById('portfolioChart');
   if (!ctx) return;
@@ -301,7 +301,7 @@ const ctx = document.getElementById('portfolioChart');
     },
     options: { responsive: true }
   });
-=======
+
   // ----------- Portfolio Chart -----------
   const portfolioCtx = document.getElementById('portfolioChart');
   if (portfolioCtx) {
@@ -325,7 +325,7 @@ const ctx = document.getElementById('portfolioChart');
       }
     });
   }
->>>>>>> 9b16e7f34fce4ad61def786ef4b12670890141df:src/frontend/js/theme.js
+
 
   
 });
