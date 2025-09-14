@@ -7,7 +7,13 @@ Welcome to the official **Hackathon Submission Template** for the **South Africa
 ## 📂 Repository Structure
 ```
 ├── assets/
-│   └── README.md
+│   └── image/
+│   │   ├── Sasol.jpg
+│   │   ├── Naspers.png
+│   │   ├── Sanlam.jpg
+│   │   ├── Shoprite.jpeg
+│   │   ├── FNB.png
+
 ├── demo/
 │   ├── OVERVIEW.md
 │   └── README.md
@@ -18,10 +24,15 @@ Welcome to the official **Hackathon Submission Template** for the **South Africa
 │   └── USAGE.md
 ├── scripts/
 │   └── README.md
-├── src/
-│   └── README.md
-│   └── frontend/
-│   └── frontend/
+│   ├── frontend/
+│   │   ├── index.html
+│   │   ├── login.html
+│   │   ├── css/
+│   │   │   ├── script.css
+│   │   │   └── script_main.css
+│   │   ├── js/
+│   │   │   ├── theme.js
+│   │   │   └── budget.js
 
 ├── vendor/
 │   └── README.md
