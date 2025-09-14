@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   async function loadReceiptJSON() {
     try {
-      const response = await fetch("../../assets/data/receipt.json"); // offline JSON file
+      const response = await fetch("assets/data/receipt.json"); // offline JSON file
       const receiptData = await response.json();
 
       pdfList.innerHTML = "";
