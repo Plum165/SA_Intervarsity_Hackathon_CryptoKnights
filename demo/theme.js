@@ -17,9 +17,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const applyCustomBtn = document.getElementById('apply-custom-theme');
   const addPointsBtn = document.getElementById("addPointsBtn");
   const ownedThemesList = document.getElementById("ownedThemesList");
-  const ownedCouponsList = document.getElementById("ownedCouponsList");
-
-
+ 
+const ownedCouponsLists = document.querySelectorAll(".ownedCouponsList");
 
 
 
@@ -32,24 +31,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ----------- Update Rewards Display -----------
   const updateRewardsDisplay = () => {
-    if (ownedThemesList) {
-      ownedThemesList.innerHTML = "";
-      ownedThemes.forEach(theme => {
-        const li = document.createElement("li");
-        li.textContent = theme.replace("theme-", "").replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase());
-        ownedThemesList.appendChild(li);
-      });
-    }
+  // Themes
+  if (ownedThemesList) {
+    ownedThemesList.innerHTML = "";
+    ownedThemes.forEach(theme => {
+      const li = document.createElement("li");
+      li.textContent = theme
+        .replace("theme-", "")
+        .replace(/-/g, " ")
+        .replace(/\b\w/g, c => c.toUpperCase());
+      ownedThemesList.appendChild(li);
+    });
+  }
 
-    if (ownedCouponsList) {
-      ownedCouponsList.innerHTML = "";
+  // Coupons → update every list with this class
+  ownedCouponsLists.forEach(list => {
+    list.innerHTML = "";
+    if (ownedCoupons.length === 0) {
+      const li = document.createElement("li");
+      li.textContent = "No coupons owned yet.";
+      list.appendChild(li);
+    } else {
       ownedCoupons.forEach(coupon => {
         const li = document.createElement("li");
         li.textContent = coupon.replace(/([a-zA-Z]+)(\d+)/, "$1 - $2% Off");
-        ownedCouponsList.appendChild(li);
+        list.appendChild(li);
       });
     }
-  };
+  });
+};
   updateRewardsDisplay();
 
   // ----------- Add Points Button -----------
