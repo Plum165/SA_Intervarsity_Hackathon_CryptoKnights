@@ -1,4 +1,4 @@
-pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.5.141/pdf.worker.min.js';
+
 
 document.addEventListener('DOMContentLoaded', () => {
   // ----------- Load User Data -----------
